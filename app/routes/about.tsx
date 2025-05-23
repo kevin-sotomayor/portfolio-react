@@ -1,6 +1,5 @@
 import type { Route } from "./+types/introduction";
 
-
 export function meta({}: Route.MetaArgs) {
 	return [
 		{ title: "Portfolio de Kevin Sotomayor" },
@@ -8,8 +7,8 @@ export function meta({}: Route.MetaArgs) {
 	];
 }
 
-export default function HomePage() {
+export default function AboutPage() {
 	return (
-		<p>introduction</p>
+		<p>about</p>
 	)
 }

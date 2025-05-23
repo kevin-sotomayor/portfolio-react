@@ -1,9 +1,8 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, } from "react-router";
-import { Canvas } from '@react-three/fiber'
 
 import type { Route } from "./+types/root";
-import { HeaderComponent } from "./components/Header";
 import "./global.css";
+
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -16,11 +15,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body className="app">
-				<HeaderComponent />
 				{children}
-				<div className="app-canvas_container">
-					<Canvas />
-				</div>
 				<ScrollRestoration />
 				<Scripts />
 			</body>
