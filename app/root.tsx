@@ -1,9 +1,13 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, } from "react-router";
 
 import type { Route } from "./+types/root";
-import "./global.css";
+
+import "./styles/globals.css";
 
 
+// export function HydrateFallback() {
+// 	return <p>loading stuff...</p>
+// }
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (

@@ -9,10 +9,12 @@ import NavComponent from "./Nav";
 export default function LayoutComponent() {
 	return (
 		<>
-			<CanvasComponent />
 			<HeaderComponent />
 			<NavComponent />
-			<Outlet />
+			<CanvasComponent />
+			<main className="app-main">
+				<Outlet />
+			</main>
 		</>
 	)
 }
