@@ -57,8 +57,47 @@
 	left: 0;
 	z-index: 100;
 	padding: 1rem;
-	background-color: rgba(0, 1, 5, 0.5);
+	background-color: rgba(0, 1, 5, 0.75);
 	pointer-events: none;
+}
+
+.app-footer {
+	position: fixed;
+	height: 3rem;
+	width: 100vw;
+	top: calc(100vh - 3rem);
+	left: 0;
+	z-index: 100;
+	background-color: rgba(0, 1, 5, 0.75);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0 1rem;
+}
+
+.app-footer__language {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 1rem;
+}
+
+.app-footer__language button {
+	cursor: pointer;
+	height: 1.2rem;
+	color: white;
+	background-color: transparent;
+	border: none;
+	font-family: "Manrope-SemiBold";
+	font-size: 0.9rem;
+	text-decoration: underline;
+}
+
+.app-footer__language button:hover {
+
 }
 
 .app-header__title {
@@ -106,16 +145,17 @@
 	color: white;
 	font-family: "Manrope-Light";
 	text-decoration: none;
+	font-size: 0.9rem;
 }
 
 .app-main {
-	display: none;
 	position: fixed;
-	top: 6rem;
+	top: 9rem;
 	left: 0;
-	height: calc(100vh - 4rem);
+	height: calc(100vh - 12rem);
 	width: 100vw;
 	z-index: 2;
 	color: white;
+	padding: 1rem;
 }
 
