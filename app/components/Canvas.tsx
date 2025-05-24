@@ -1,5 +1,5 @@
 import { useState, useRef, useMemo, } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 
@@ -12,7 +12,7 @@ const vertexShader = `
 `;
 
 const fragmentShader = `
-    // uniform vec2 iResolution;
+    uniform vec2 iResolution;
     uniform float iTime;
 
     uint hash(uint x) {
@@ -25,8 +25,6 @@ const fragmentShader = `
         x ^= x >> 16;
         return x;
     }
-
-	vec2 iResolution = vec2(1920.0, 1024.0);
 
     float fhash2(vec2 xy) {
         return float(hash(uint(1024.0 * xy.x) + hash(uint(1024.0 * xy.y)))) / float(0xFFFFFFFFu);
@@ -64,9 +62,9 @@ const fragmentShader = `
 
     float get_sample_t(vec2 coord, uint time) {
         int shift = 0;
-        for (int s = 10; s >= 0; s--) {
+        for (int s = 2; s >= 0; s--) {
             vec2 xy = mask_coord(coord, s) / iResolution.xy;
-            float factor = 6.0 * abs(xy.y - xy.x) + 1.0;
+            float factor = 1.0 * abs(xy.y - xy.x) + 1.0;
             if (s < int(factor + 1.0 * fhash3(xy, time))) {
                 shift = s;
                 break;
@@ -79,7 +77,7 @@ const fragmentShader = `
 
     void mainImage(out vec4 fragColor, vec2 fragCoord) {
         vec2 R = iResolution.xy;
-        vec2 u = (fragCoord * 2.0 - R) / R.y;
+        vec2 u = (fragCoord * 0.5 - R) / R.y;
         
         float a = 0.0;
         float d = 0.0;
@@ -100,8 +98,8 @@ const fragmentShader = `
         float t = step(0.5, value);
         vec3 color = mix(mix(color1, color2, value * 2.0), mix(color2, color3, (value - 0.5) * 2.0), t);
 
-        float noise = get_sample_t(fragCoord, uint(iTime * 10.0));
-        color += noise * 0.075;
+        float noise = get_sample_t(fragCoord, uint(iTime * 15.0));
+        color += noise * 0.04;
         
         fragColor = vec4(color, 1.0);
     }
@@ -122,9 +120,14 @@ function Shader() {
 			},
 			vertexShader,
 			fragmentShader,
-
 		})
 	}, []);
+
+	const { camera, size } = useThree();
+	const z = 0;
+	const fov = camera.fov * (Math.PI / 180);
+	const height = 2 * Math.tan(fov / 2) * Math.abs(camera.position.z - z);
+	const width = height * (size.width / size.height);
 
 	useFrame(({ clock }) => {
 		if (shader) {
@@ -134,7 +137,7 @@ function Shader() {
 
 	return (
 		<mesh ref={meshRef} >
-			<planeGeometry />
+			<planeGeometry args={[width, height]}/>
 			<primitive object={shader} attach="material" />
 		</mesh>
 	)
@@ -145,9 +148,11 @@ export default function CanvasComponent() {
 	const canvas = document.getElementsByTagName("canvas");
 	console.log(canvas);
 	return (
-		<Canvas className="app-background" camera={{ position: [0,-0.1, 10] }} gl={{ antialias: true, alpha: true, }}>
-			<Shader />
-			<ambientLight />
-		</Canvas>
+		<div className="app-background">
+			<Canvas camera={{ position: [0, 0, 1] }} gl={{ antialias: true, alpha: true, }}>
+				<Shader />
+				<ambientLight />
+			</Canvas>
+		</div>
 	)
 }
