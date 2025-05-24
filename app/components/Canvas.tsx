@@ -79,12 +79,12 @@ const fragmentShader = `
         vec2 R = iResolution.xy;
         vec2 u = (fragCoord * 0.5 - R) / R.y;
         
-        float a = 0.0;
+        float a = 2.0;
         float d = 0.0;
         float i = 0.0;
         
-        for (; i < 1.5; d += sin(i++ * u.y + a)) 
-            a += cos(i - d + 0.1 * iTime - a * u.x);
+        for (; i < 2.0; d += sin(i++ * u.y + a)) 
+            a += cos(i - d + 0.025 * iTime - a * u.x);
                 
         float value = 0.4 + 0.6 * cos(dot(u, vec2(d, a)));
         
@@ -98,8 +98,8 @@ const fragmentShader = `
         float t = step(0.5, value);
         vec3 color = mix(mix(color1, color2, value * 2.0), mix(color2, color3, (value - 0.5) * 2.0), t);
 
-        float noise = get_sample_t(fragCoord, uint(iTime * 15.0));
-        color += noise * 0.04;
+        float noise = get_sample_t(fragCoord, uint(iTime * 10.0));
+        color += noise * 0.05;
         
         fragColor = vec4(color, 1.0);
     }
