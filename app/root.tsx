@@ -1,13 +1,20 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, } from "react-router";
-
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, createCookie } from "react-router";
 import type { Route } from "./+types/root";
 
 import "./styles/globals.css";
 
 
+
+export const userLanguage = createCookie("user-language", {
+	maxAge: 60,
+	secrets: ["lalilulelo"],
+});
+
 // export function HydrateFallback() {
 // 	return <p>loading stuff...</p>
 // }
+
+
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
