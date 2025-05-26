@@ -79,8 +79,8 @@ const fragmentShader = `
         vec2 R = iResolution.xy;
         vec2 u = (fragCoord * 0.5 - R) / R.y;
         
-        float a = 2.0;
-        float d = 0.0;
+        float a = 1.0;
+        float d = 1.0;
         float i = 0.0;
         
         for (; i < 2.0; d += sin(i++ * u.y + a)) 

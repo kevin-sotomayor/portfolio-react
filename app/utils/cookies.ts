@@ -1,7 +1,8 @@
-import { createCookie } from "react-router";
+import { createCookie, } from "react-router";
 
 
 
 export const userPrefs = createCookie("user-prefs", {
-  maxAge: 60,
+	maxAge: 60,
+	httpOnly: false,
 });

@@ -1,4 +1,4 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, createCookie } from "react-router";
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, createCookie, } from "react-router";
 import type { Route } from "./+types/root";
 
 import "./styles/globals.css";
@@ -10,10 +10,17 @@ export const userLanguage = createCookie("user-language", {
 	secrets: ["lalilulelo"],
 });
 
-// export function HydrateFallback() {
-// 	return <p>loading stuff...</p>
-// }
+export function HydrateFallback() {
+	return <p>loading stuff...</p>
+}
 
+
+export async function clientAction({ request, }: Route.ClientActionArgs) {
+	let formData = await request.formData();
+	const values = Object.fromEntries(formData);
+	console.log(values);
+	return;
+}
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
