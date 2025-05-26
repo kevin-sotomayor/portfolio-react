@@ -13,7 +13,7 @@ export function HydrateFallback() {
 
 export async function clientLoader({ request, }: Route.LoaderArgs) {
 	const headers = await request.headers.get("Cookie");
-	console.log(headers);
+	// console.log(headers);
 	return headers;
 }
 
@@ -24,7 +24,7 @@ export async function clientAction({ request, }: Route.ClientActionArgs) {
 	if (!formattedFormData.language) {
 		throw new Error("An error happened while changing language");
 	}
-	const rawCookie = request.headers.get("Cookie");
+	const rawCookie = await request.headers.get("Cookie");
 	const parsedCookie = await sessionCookie.parse(rawCookie) || {};
 
 	switch (formattedFormData.language) {
@@ -38,7 +38,7 @@ export async function clientAction({ request, }: Route.ClientActionArgs) {
 			console.log("ARE YOU TESTING ME SIR ?")
 			break;
 	}
-	const cookie = await await sessionCookie.serialize(parsedCookie);
+	const cookie = await sessionCookie.serialize(parsedCookie);
 	return redirect("/", {
 		headers: {
 			"Set-Cookie": cookie,
