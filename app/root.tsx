@@ -1,25 +1,49 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, createCookie, } from "react-router";
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, } from "react-router";
 import type { Route } from "./+types/root";
 
 import "./styles/globals.css";
 
+import { sessionCookie, } from "./utils/cookies";
 
 
-export const userLanguage = createCookie("user-language", {
-	maxAge: 60,
-	secrets: ["lalilulelo"],
-});
 
 export function HydrateFallback() {
 	return <p>loading stuff...</p>
 }
 
+export async function clientLoader({ request, }: Route.LoaderArgs) {
+	const headers = await request.headers.get("Cookie");
+	console.log(headers);
+	return headers;
+}
 
+// TODO: choose default language and handle the case here
 export async function clientAction({ request, }: Route.ClientActionArgs) {
-	let formData = await request.formData();
-	const values = Object.fromEntries(formData);
-	console.log(values);
-	return;
+	const formData = await request.formData();
+	const formattedFormData = Object.fromEntries(formData);
+	if (!formattedFormData.language) {
+		throw new Error("An error happened while changing language");
+	}
+	const rawCookie = request.headers.get("Cookie");
+	const parsedCookie = await sessionCookie.parse(rawCookie) || {};
+
+	switch (formattedFormData.language) {
+		case "fr":
+			parsedCookie.language = "fr"
+			break;
+		case "en":
+			parsedCookie.language = "en"
+			break;
+		default:
+			console.log("ARE YOU TESTING ME SIR ?")
+			break;
+	}
+	const cookie = await await sessionCookie.serialize(parsedCookie);
+	return redirect("/", {
+		headers: {
+			"Set-Cookie": cookie,
+		},
+	});
 }
 
 
@@ -38,11 +62,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Scripts />
 			</body>
 		</html>
-	);
+	)
 }
 
 export default function App() {
-	return <Outlet />;
+	return <Outlet />
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
@@ -62,5 +86,5 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 		<main>
 			<p>{message}</p>
 		</main>
-	);
+	)
 }
