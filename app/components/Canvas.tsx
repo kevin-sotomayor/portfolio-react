@@ -145,7 +145,6 @@ function Shader() {
 
 
 export default function CanvasComponent() {
-	const canvas = document.getElementsByTagName("canvas");
 	return (
 		<div className="app-background">
 			<Canvas camera={{ position: [0, 0, 1] }} gl={{ antialias: true, alpha: true, }}>

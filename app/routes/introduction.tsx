@@ -1,16 +1,11 @@
 import type { Route } from "./+types/introduction";
-import data from "../data/content_en.json";
+
+// import data from "../data/content_en.json";
+import { languageCookie, } from "../utils/cookies";
 
 
 
-export function clientLoader({ request, }: Route.LoaderArgs) {
-	const res = request.headers.get("Coookie");
-	return res;
-}
-
-export default function HomePage({ loaderData, }: Route.ComponentProps) {
-	const data = loaderData;
-	// console.log(data);
+export default function HomePage({ loaderData }: Route.ComponentProps) {
 	return (
 		// check language
 		// (data && (
@@ -20,6 +15,6 @@ export default function HomePage({ loaderData, }: Route.ComponentProps) {
 		// 		)
 		// 	})
 		// ))
-		<p>hello world</p>
+		<p>introduction</p>
 	)
 }
