@@ -2,9 +2,8 @@ import type { Route, } from "./+types/Layout";
 import { Form, } from "react-router";
 
 
-// NB: Form is handle in the root component
 
-export default function FooterComponent({ loaderData}: Route.ComponentProps) {
+export default function FooterComponent({ loaderData }: Route.ComponentProps) {
 	return (
 		<footer className="app-footer">
 			<Form className="app-footer__language" method="post">

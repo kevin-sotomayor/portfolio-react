@@ -2,13 +2,40 @@ import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, 
 import type { Route } from "./+types/root";
 
 import "./styles/globals.css";
-
-import { sessionCookie, } from "./utils/cookies";
-
+import { languageCookie } from "./utils/cookies";
 
 
-export function HydrateFallback() {
-	return <p>loading stuff...</p>
+
+export async function loader({ request }: Route.LoaderArgs) {
+	const rawCookie = await request.headers.get("Cookie");
+	const parsedCookie = await languageCookie.parse(rawCookie) || {};
+	console.log("Cookie : ", parsedCookie);
+}
+
+export async function action({ request }: Route.ActionArgs) {
+	const rawFormData = await request.formData();
+	const formData = Object.fromEntries(rawFormData);
+	const rawCookie = await request.headers.get("Cookie");
+	const referer = await request.headers.get("Referer");
+
+	switch (Object.keys(formData)[0]) {
+		case "language":
+			const cookie = await languageCookie.parse(rawCookie) || {};
+			cookie.language = formData.language;
+			return redirect("", {
+				headers: {
+					"Set-Cookie": await languageCookie.serialize(cookie),
+				}
+			})
+			break;
+		case "theme": 
+			console.log("On gère le thème ici");
+			break;
+		default:
+			console.log("Qu'essaies-tu de faire ?")
+			break;
+	}
+	return;
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
