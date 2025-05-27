@@ -6,17 +6,10 @@ import { languageCookie } from "./utils/cookies";
 
 
 
-export async function loader({ request }: Route.LoaderArgs) {
-	const rawCookie = await request.headers.get("Cookie");
-	const parsedCookie = await languageCookie.parse(rawCookie) || {};
-	console.log("Cookie : ", parsedCookie);
-}
-
 export async function action({ request }: Route.ActionArgs) {
 	const rawFormData = await request.formData();
 	const formData = Object.fromEntries(rawFormData);
 	const rawCookie = await request.headers.get("Cookie");
-	const referer = await request.headers.get("Referer");
 
 	switch (Object.keys(formData)[0]) {
 		case "language":
@@ -38,6 +31,7 @@ export async function action({ request }: Route.ActionArgs) {
 	return;
 }
 
+// TODO: handle the lang dynamically with the value of the cookie in a loader
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
