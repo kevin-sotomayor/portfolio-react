@@ -1,9 +1,15 @@
 import type { Route } from "./+types/introduction";
 import { useState, } from "react";
 
-// import data from "../data/content_en.json";
 import { languageCookie, } from "../utils/cookies";
+import content_fr from "../data/introduction_fr.json";
+import content_en from "../data/introduction_en.json";
 
+
+
+interface DataInterface {
+	introduction: string[],
+}
 
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -13,12 +19,10 @@ export async function loader({ request }: Route.LoaderArgs) {
 } 
 
 export default function HomePage({ loaderData }: Route.ComponentProps) {
-	// TODO: this
-	// const [language, setLanguage] = useState("");
-	// if (loaderData) {
-	// 	setLanguage(loaderData);
-	// }
+	const cookie = loaderData;
 	return (
-		<p>introduction</p>
-	)
+		<>
+			
+		</>
+	);
 }

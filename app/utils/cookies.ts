@@ -2,7 +2,7 @@ import { createCookie, } from "react-router";
 
 
 
-export const languageCookie = createCookie("language", {
+export const languageCookieUtils = createCookie("language", {
 	path: "/",
 	sameSite: "strict",
 	httpOnly: true,

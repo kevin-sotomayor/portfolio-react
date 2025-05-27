@@ -2,8 +2,17 @@ import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, 
 import type { Route } from "./+types/root";
 
 import "./styles/globals.css";
-import { languageCookie } from "./utils/cookies";
+import { languageCookieUtils, } from "./utils/cookies";
 
+
+export async function loader({ request }: Route.LoaderArgs) {
+	const headersLanguage = await request.headers.get("Accept-Language");
+	const headersCookie = await request.headers.get("Cookie");
+	const languageCookie = await languageCookieUtils.parse(headersCookie);
+	if (!headersLanguage) {
+		languageCookie.language = "en"
+	}
+}
 
 
 export async function action({ request }: Route.ActionArgs) {
@@ -13,11 +22,11 @@ export async function action({ request }: Route.ActionArgs) {
 
 	switch (Object.keys(formData)[0]) {
 		case "language":
-			const cookie = await languageCookie.parse(rawCookie) || {};
+			const cookie = await languageCookieUtils.parse(rawCookie) || {};
 			cookie.language = formData.language;
 			return redirect("", {
 				headers: {
-					"Set-Cookie": await languageCookie.serialize(cookie),
+					"Set-Cookie": await languageCookieUtils.serialize(cookie),
 				}
 			})
 			break;
