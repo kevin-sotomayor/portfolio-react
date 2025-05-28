@@ -3,7 +3,7 @@ import { Form, } from "react-router";
 
 
 
-export default function FooterComponent({ loaderData }: Route.ComponentProps) {
+export default function FooterComponent() {
 	return (
 		<footer className="app-footer">
 			<Form className="app-footer__language" method="post">

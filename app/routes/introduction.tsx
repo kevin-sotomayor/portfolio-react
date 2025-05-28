@@ -1,6 +1,7 @@
 import type { Route } from "./+types/introduction";
 import { useState, } from "react";
 
+import "../styles/introduction.css";
 import { languageCookieUtils, } from "../utils/cookies";
 import content_fr from "../data/introduction_fr.json";
 import content_en from "../data/introduction_en.json";
@@ -21,16 +22,20 @@ export async function loader({ request }: Route.LoaderArgs) {
 export default function HomePage({ loaderData }: Route.ComponentProps) {
 	const cookie = loaderData;
 	return (
-		<>
-			{cookie && cookie.language === "fr" ? (
-				content_fr.introduction.map((paragraph, index) => (
-					<p key={index}>{paragraph}</p>
-				))
-			) : (
-				content_en.introduction.map((paragraph, index) => (
-					<p key={index}>{paragraph}</p>
-				))
-			)}
-		</>
-	);
+		<main className="app-introduction">
+			<div className="app-introduction__text">
+				{cookie && cookie.language === "fr" ? (
+					<>
+						<h2>{content_fr.introduction[0]}</h2>
+						<h3>{content_fr.introduction[1]}</h3>
+					</>
+				) : (
+					<>
+						<h2>{content_en.introduction[0]}</h2>
+						<h3>{content_en.introduction[1]}</h3>
+					</>
+				)}
+			</div>
+		</main>
+	)
 }

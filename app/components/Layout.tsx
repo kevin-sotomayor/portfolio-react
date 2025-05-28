@@ -13,9 +13,7 @@ export default function LayoutComponent() {
 			<HeaderComponent />
 			<NavComponent />
 			<CanvasComponent />
-			<main className="app-main">
 				<Outlet />
-			</main>
 			<FooterComponent />
 		</>
 	)
