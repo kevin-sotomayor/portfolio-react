@@ -3,14 +3,30 @@ import type { Route } from "./+types/root";
 
 import "./styles/globals.css";
 import { languageCookieUtils, } from "./utils/cookies";
+import { parseAcceptLanguage } from "./utils/acceptLanguageUtils";
+
+
+interface PreferedLanguageInterface {
+	language: string,
+	quality: number,
+}
 
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const headersLanguage = await request.headers.get("Accept-Language");
 	const headersCookie = await request.headers.get("Cookie");
 	const languageCookie = await languageCookieUtils.parse(headersCookie);
-	if (!headersLanguage) {
-		languageCookie.language = "en"
+	
+	let preferredLanguage: string | PreferedLanguageInterface[] = "en";
+
+	if (headersLanguage) {
+		// const parsedLanguages = parseAcceptLanguage(headersLanguage);
+		// if (parsedLanguages.length > 0) {
+		// 	preferredLanguage = parsedLanguages[0].language;
+		// 	console.log(preferredLanguage);
+		// }
+		const parsedLanguages = parseAcceptLanguage(headersLanguage);
+		return;
 	}
 }
 

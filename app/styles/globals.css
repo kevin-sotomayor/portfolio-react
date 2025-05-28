@@ -107,9 +107,7 @@
 	text-decoration: underline;
 }
 
-.app-footer__language button:hover {
-
-}
+.app-footer__language button:hover {}
 
 .app-header__title {
 	font-size: 2rem;
