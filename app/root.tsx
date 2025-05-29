@@ -1,4 +1,5 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, data, } from "react-router";
+import { useState, } from "react";
 import type { Route } from "./+types/root";
 
 import "./styles/globals.css";
@@ -11,25 +12,31 @@ interface PreferedLanguageInterface {
 	quality: number,
 }
 
-
 export async function loader({ request }: Route.LoaderArgs) {
-	const headersLanguage = await request.headers.get("Accept-Language");
-	const headersCookie = await request.headers.get("Cookie");
-	const languageCookie = await languageCookieUtils.parse(headersCookie);
-	
-	let preferredLanguage: string | PreferedLanguageInterface[] = "en";
+	const cookieHeader = await request.headers.get("Cookie");
+	const cookie = cookieHeader ? await languageCookieUtils.parse(cookieHeader) : {};
 
-	if (headersLanguage) {
-		// const parsedLanguages = parseAcceptLanguage(headersLanguage);
-		// if (parsedLanguages.length > 0) {
-		// 	preferredLanguage = parsedLanguages[0].language;
-		// 	console.log(preferredLanguage);
-		// }
-		const parsedLanguages = parseAcceptLanguage(headersLanguage);
+	if (cookie.language) {
 		return;
 	}
-}
 
+	let language = "en";
+	const acceptLanguageHeader = request.headers.get("Accept-Language");
+	
+	if (acceptLanguageHeader) {
+		const res = parseAcceptLanguage(acceptLanguageHeader);
+		if (res.length > 0 && res[0].language.startsWith("fr")) {
+			language = "fr";
+		}
+	}
+
+	const newCookie = { ...cookie, language };
+	return redirect("", {
+		headers: {
+			"Set-Cookie": await languageCookieUtils.serialize(newCookie),
+		},
+	});
+}
 
 export async function action({ request }: Route.ActionArgs) {
 	const rawFormData = await request.formData();
@@ -45,13 +52,6 @@ export async function action({ request }: Route.ActionArgs) {
 					"Set-Cookie": await languageCookieUtils.serialize(cookie),
 				}
 			})
-			break;
-		case "theme": 
-			console.log("On gère le thème ici");
-			break;
-		default:
-			console.log("Qu'essaies-tu de faire ?")
-			break;
 	}
 	return;
 }
@@ -59,7 +59,7 @@ export async function action({ request }: Route.ActionArgs) {
 // TODO: handle the lang dynamically with the value of the cookie in a loader
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="">
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
