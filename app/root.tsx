@@ -1,4 +1,4 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, data, } from "react-router";
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, } from "react-router";
 import { useState, } from "react";
 import type { Route } from "./+types/root";
 
@@ -13,11 +13,12 @@ interface PreferedLanguageInterface {
 }
 
 export async function loader({ request }: Route.LoaderArgs) {
+	// Was initially setting up the language based on Web Browser prefs automatically
 	const cookieHeader = await request.headers.get("Cookie");
 	const cookie = cookieHeader ? await languageCookieUtils.parse(cookieHeader) : {};
 
 	if (cookie.language) {
-		return;
+		return cookie.language;
 	}
 
 	let language = "en";
@@ -29,25 +30,20 @@ export async function loader({ request }: Route.LoaderArgs) {
 			language = "fr";
 		}
 	}
-
-	const newCookie = { ...cookie, language };
-	return redirect("", {
-		headers: {
-			"Set-Cookie": await languageCookieUtils.serialize(newCookie),
-		},
-	});
+	return language;
 }
 
 export async function action({ request }: Route.ActionArgs) {
 	const rawFormData = await request.formData();
 	const formData = Object.fromEntries(rawFormData);
 	const rawCookie = await request.headers.get("Cookie");
+	const currentLocation = formData.submittedFrom.toString();
 
 	switch (Object.keys(formData)[0]) {
 		case "language":
 			const cookie = await languageCookieUtils.parse(rawCookie) || {};
 			cookie.language = formData.language;
-			return redirect("", {
+			return redirect(currentLocation, {
 				headers: {
 					"Set-Cookie": await languageCookieUtils.serialize(cookie),
 				}
@@ -56,10 +52,10 @@ export async function action({ request }: Route.ActionArgs) {
 	return;
 }
 
-// TODO: handle the lang dynamically with the value of the cookie in a loader
 export function Layout({ children }: { children: React.ReactNode }) {
+	const data = useLoaderData();
 	return (
-		<html lang="">
+		<html lang={data}>
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
