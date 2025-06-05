@@ -11,7 +11,7 @@
 	font-family: "Manrope-Regular";
 	user-select: none;
 	line-height: 1.5rem;
-	animation: fade-in 2s;
+	animation: left-fade-in 2s;
 	margin: 0.5rem 0;
 }
 

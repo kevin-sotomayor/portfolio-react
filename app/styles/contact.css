@@ -1,0 +1,69 @@
+.app-contact {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+.app-contact__content {
+	font-size: 0.9rem;
+	font-weight: 400;
+	font-family: "Manrope-Regular";
+	user-select: none;
+	line-height: 1.5rem;
+	animation: right-fade-in 2s;
+	display: flex;
+	flex-direction: column;
+}
+
+.app-contact__content__chat {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+	justify-content: flex-end;
+	margin: 1rem 0;
+}
+
+.app-contact__content__chat img {
+	aspect-ratio: 1/1;
+	width: 4rem;
+	height: auto;
+	border-radius: 50%;
+	transform: scaleX(-1);
+}
+
+.app-contact__content__chat p {
+	font-family: "Manrope-Bold";
+}
+
+.app-contact__content__socials {
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	gap: 1rem;
+}
+
+.app-contact__content__socials li {
+	width: 4rem;
+}
+
+.app-contact__content__socials a {
+	color: white;
+	text-decoration: none;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@media screen and (min-width: 1280px) {}
+
+@media screen and (min-width: 1600px) {}
+
+@media screen and (min-width: 1920px) {}
+
+@media screen and (min-width: 2560px) {}
+
+@media screen and (min-width: 3840px) {}
