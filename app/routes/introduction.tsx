@@ -12,11 +12,10 @@ interface DataInterface {
 	introduction: string[],
 }
 
-export function meta({ loaderData }: any) {
+export function meta({}: Route.MetaArgs) {
 	return [
-		{ 
-			title: "Kevin Sotomayor",
-		},
+		{ title: "Kevin Sotomayor" },
+		{ name: "description", content: "Kevin Sotomayor's portfolio homepage" },
 	]
 }
 

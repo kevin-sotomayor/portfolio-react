@@ -1,9 +1,23 @@
 import type { Route } from "./+types/contact";
 
+import pp from "../assets/pp.png";
 
 
-export default function ContactPage({ loaderData }: Route.ComponentProps) {
+
+export function meta({}: Route.MetaArgs) {
+	return [
+		{ title: "Kevin Sotomayor - Contact" },
+		{ name: "description", content: "Kevin Sotomayor's portfolio contact page" },
+	]
+}
+
+
+export default function ContactPage() {
 	return (
-		<p>contact</p>
+		<main className="app-contact">
+			<div className="app-contact__content">
+				<img src={pp} alt="ASCII ART Kevin Sotomayor" />
+			</div>
+		</main>
 	)
 }
