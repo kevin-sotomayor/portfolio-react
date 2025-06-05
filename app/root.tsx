@@ -2,6 +2,7 @@ import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, 
 import { useState, } from "react";
 import type { Route } from "./+types/root";
 
+import favicon from "../public/favicon.ico";
 import "./styles/globals.css";
 import { languageCookieUtils, } from "./utils/cookies";
 import { parseAcceptLanguage } from "./utils/acceptLanguageUtils";
@@ -59,6 +60,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<link rel="favicon" href={favicon} />
 				<Meta />
 				<Links />
 			</head>

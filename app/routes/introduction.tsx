@@ -12,6 +12,13 @@ interface DataInterface {
 	introduction: string[],
 }
 
+export function meta({ loaderData }: any) {
+	return [
+		{ 
+			title: "Kevin Sotomayor",
+		},
+	]
+}
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const rawCookie = await request.headers.get("Cookie");
