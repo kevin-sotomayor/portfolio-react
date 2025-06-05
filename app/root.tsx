@@ -17,8 +17,8 @@ export async function loader({ request }: Route.LoaderArgs) {
 	const cookieHeader = await request.headers.get("Cookie");
 	const cookie = cookieHeader ? await languageCookieUtils.parse(cookieHeader) : {};
 
-	if (cookie.language) {
-		return cookie.language;
+	if (cookie.lang) {
+		return cookie.lang;
 	}
 
 	let language = "en";
@@ -53,9 +53,9 @@ export async function action({ request }: Route.ActionArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-	const data = useLoaderData();
+	const language = useLoaderData();
 	return (
-		<html lang={data}>
+		<html lang={language}>
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />

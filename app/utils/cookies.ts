@@ -1,7 +1,7 @@
 import { createCookie, } from "react-router";
 
 
-export const languageCookieUtils = createCookie("language", {
+export const languageCookieUtils = createCookie("lang", {
 	path: "/",
 	sameSite: "lax",
 	httpOnly: false, // Should be accessible to JS for client-side language switching

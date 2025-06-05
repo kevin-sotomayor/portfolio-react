@@ -5,24 +5,37 @@
 	justify-content: flex-end;
 }
 
-.app-introduction__text {
-	width: 20%;
-}
-
 .app-introduction__text h2, h3 {
 	font-size: 0.9rem;
 	font-weight: 400;
 	font-family: "Manrope-Regular";
 	animation: fade-in 2s;
+	user-select: none;
 }
 
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+	.app-introduction__text {
+		width: 50%;
+	}
+}
 
-@media screen and (min-width: 1280px) {}
+@media screen and (min-width: 1280px) {
+	.app-introduction__text {
+		width: 33%;
+	}
+}
 
-@media screen and (min-width: 1600px) {}
+@media screen and (min-width: 1600px) {
+	.app-introduction__text {
+		width: 25%;
+	}
+}
 
-@media screen and (min-width: 1920px) {}
+@media screen and (min-width: 1920px) {
+	.app-introduction__text {
+		width: 20%;
+	}
+}
 
 @media screen and (min-width: 2560px) {}
 

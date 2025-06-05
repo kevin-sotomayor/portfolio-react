@@ -156,6 +156,12 @@
 	font-family: "Manrope-Light";
 	text-decoration: none;
 	font-size: 0.9rem;
+	user-select: none;
+	cursor: default;
+}
+
+.app-nav ul li a:hover {
+	cursor: pointer;
 }
 
 main {
