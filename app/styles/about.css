@@ -9,31 +9,26 @@
 	font-size: 0.9rem;
 	font-weight: 400;
 	font-family: "Manrope-Regular";
-	animation: fade-in 2s;
 	user-select: none;
 	line-height: 1.5rem;
+	animation: fade-in 2s;
+	margin: 0.5rem 0;
 }
 
-@media screen and (min-width: 768px) {
-	.app-introduction__text {
+@media screen and (min-width: 1280px) {
+	.app-about__text {
 		width: 50%;
 	}
 }
 
-@media screen and (min-width: 1280px) {
-	.app-introduction__text {
-		width: 33%;
-	}
-}
-
 @media screen and (min-width: 1600px) {
-	.app-introduction__text {
+	.app-about__text {
 		width: 25%;
 	}
 }
 
 @media screen and (min-width: 1920px) {
-	.app-introduction__text {
+	.app-about__text {
 		width: 20%;
 	}
 }

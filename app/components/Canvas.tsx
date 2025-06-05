@@ -84,19 +84,15 @@ const fragmentShader = `
         float i = 0.0;
         
         for (; i < 2.0; d += sin(i++ * u.y + a)) 
-            a += cos(i - d + 0.025 * iTime - a * u.x);
+            a += cos(i - d + 0.15 * iTime - a * u.x);
                 
         float value = 0.4 + 0.6 * cos(dot(u, vec2(d, a)));
-        
-        // vec3 color1 = vec3(0.025, 0.025, 0.05);
-        // vec3 color2 = vec3(.25, .25, .25);
-        // vec3 color3 = vec3(0.05, 0., 0.05);
 
-		vec3 color1 = vec3(.05, 0.05, 0.05);
-        vec3 color2 = vec3(.2, .2, .2);
-        vec3 color3 = vec3(0., 0.01, .05);
+		vec3 color1 = vec3(0.175, 0.175, 0.175);
+        vec3 color2 = vec3(0.15, 0.15, 0.15);
+        vec3 color3 = vec3(0.125, 0.125, 0.125);
         float t = step(0.5, value);
-        vec3 color = mix(mix(color1, color2, value * 2.0), mix(color2, color3, (value - 0.5) * 2.0), t);
+        vec3 color = mix(mix(color1, color2, value * 2.0), mix(color2, color3, (value - 0.5) * 5.0), t);
 
         float noise = get_sample_t(fragCoord, uint(iTime * 10.0));
         color += noise * 0.05;
