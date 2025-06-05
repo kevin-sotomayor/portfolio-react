@@ -67,6 +67,12 @@
 	}
 }
 
+:root {
+	--default-text-color: rgba(255, 255, 255, 0.8);
+	--hovered-text-color: rgba(255, 255, 255, 1);
+	--layout-background-color: rgba(20, 20, 20, 0.75);
+}
+
 .app {
 	position: fixed;
 }
@@ -79,7 +85,7 @@
 	left: 0;
 	z-index: 100;
 	padding: 1rem;
-	background-color: rgba(20, 20, 20, 0.75);
+	background-color: var(--layout-background-color);
 	pointer-events: none;
 }
 
@@ -90,7 +96,7 @@
 	top: calc(100vh - 3rem);
 	left: 0;
 	z-index: 100;
-	background-color: rgba(20, 20, 20, 0.75);
+	background-color: var(--layout-background-color);
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -110,7 +116,7 @@
 .app-footer__language button {
 	cursor: pointer;
 	height: 1.2rem;
-	color: white;
+	color: var(--default-text-color);
 	background-color: transparent;
 	border: none;
 	font-family: "Manrope-SemiBold";
@@ -118,17 +124,19 @@
 	text-decoration: underline;
 }
 
-.app-footer__language button:hover {}
+.app-footer__language button:hover {
+	color: var(--hovered-text-color);
+}
 
 .app-header__title {
 	font-size: 2rem;
-	color: white;
+	color: var(--default-text-color);
 	font-family: "Manrope-Light";
 }
 
 .app-header__subtitle {
 	font-size: 1rem;
-	color: white;
+	color: var(--default-text-color);
 	font-family: "Manrope-Light";
 	letter-spacing: 1.2px;
 }
@@ -163,7 +171,7 @@
 }
 
 .app-nav ul li a {
-	color: white;
+	color: var(--default-text-color);
 	font-family: "Manrope-Light";
 	text-decoration: none;
 	font-size: 0.9rem;
@@ -173,6 +181,7 @@
 
 .app-nav ul li a:hover {
 	cursor: pointer;
+	color: var(--hovered-text-color);
 }
 
 main {
