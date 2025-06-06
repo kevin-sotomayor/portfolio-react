@@ -1,9 +1,10 @@
 import type { Route, } from "./+types/Layout";
 import { Form, useLocation} from "react-router";
+import type { LanguageInterface } from "../utils/types";
 
 
 
-export default function FooterComponent() {
+export default function FooterComponent(languageProp: LanguageInterface) {
 	const currentLocation = useLocation();
 	return (
 		<footer className="app-footer">
