@@ -35,13 +35,17 @@
 
 .app-contact__content__chat img:hover {
 	transform: scaleX(1);
-	background-color: red;
 }
 
-.app-contact__content__chat p {
+.app-contact__content__chat a {
 	font-family: "Manrope-Bold";
 	user-select: none;
 	color: rgba(255, 255, 255, 0.8);
+	transition: color 0.25s;
+}
+
+.app-contact__content__chat a:hover {
+	color: var(--hovered-text-color);
 }
 
 .app-contact__content__socials {

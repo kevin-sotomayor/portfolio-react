@@ -18,7 +18,7 @@ export default function ContactPage() {
 		<main className="app-contact">
 			<div className="app-contact__content">
 				<div className="app-contact__content__chat">
-					<p>Let's get in touch !</p>
+					<a href="mailto:kevin.sotomayor@outlook.fr">Let's get in touch !</a>
 					<img src={pp} alt="ASCII ART Kevin Sotomayor" />
 				</div>
 				<ul className="app-contact__content__socials">
@@ -29,9 +29,6 @@ export default function ContactPage() {
 								</path>
 							</svg>
 						</a>
-					</li>
-					<li>
-						<a href="mailto:kevin.sotomayor@outlook.fr"> @ Mail</a>
 					</li>
 					<li>
 						<a href="https://www.malt.fr/profile/kevinsotomayor1">
