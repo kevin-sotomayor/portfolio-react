@@ -8,6 +8,7 @@ import FooterComponent from "./Footer";
 
 
 export default function LayoutComponent() {
+	
 	return (
 		<>
 			<HeaderComponent />

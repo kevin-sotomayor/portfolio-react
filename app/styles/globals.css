@@ -2,7 +2,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	border: solid .1px black;
+	/* border: solid .1px black; */
 }
 
 @font-face {
@@ -70,7 +70,7 @@
 :root {
 	--default-text-color: rgba(255, 255, 255, 0.8);
 	--hovered-text-color: rgba(255, 255, 255, 1);
-	--layout-background-color: rgba(20, 20, 20, 0.75);
+	--layout-background-color: rgba(20, 20, 26, 0.75);
 }
 
 .app {
@@ -173,7 +173,6 @@
 .app-nav ul li a {
 	color: var(--default-text-color);
 	font-family: "Manrope-Light";
-	text-decoration: none;
 	font-size: 0.9rem;
 	user-select: none;
 	cursor: default;

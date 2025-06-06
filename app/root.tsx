@@ -1,5 +1,5 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, } from "react-router";
-import { useState, } from "react";
+import { createContext, } from "react";
 import type { Route } from "./+types/root";
 
 import favicon from "../public/favicon.ico";
@@ -14,24 +14,12 @@ interface PreferedLanguageInterface {
 }
 
 export async function loader({ request }: Route.LoaderArgs) {
-	// Was initially setting up the language based on Web Browser prefs automatically
-	const cookieHeader = await request.headers.get("Cookie");
-	const cookie = cookieHeader ? await languageCookieUtils.parse(cookieHeader) : {};
-
-	if (cookie.lang) {
-		return cookie.lang;
+	const cookies = request.headers.get("Cookie");
+	if (!cookies) {
+		return null;
 	}
-
-	let language = "en";
-	const acceptLanguageHeader = request.headers.get("Accept-Language");
-	
-	if (acceptLanguageHeader) {
-		const res = parseAcceptLanguage(acceptLanguageHeader);
-		if (res.length > 0 && res[0].language.startsWith("fr")) {
-			language = "fr";
-		}
-	}
-	return language;
+	const languageCookie = await languageCookieUtils.parse(cookies);
+	return languageCookie;
 }
 
 export async function action({ request }: Route.ActionArgs) {
@@ -54,9 +42,8 @@ export async function action({ request }: Route.ActionArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-	const language = useLoaderData();
 	return (
-		<html lang={language}>
+		<html>
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -73,8 +60,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	)
 }
 
-export default function App() {
-	return <Outlet />
+export default function App({ loaderData }: Route.ComponentProps) {
+	return (
+		<Outlet />
+	);
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
@@ -91,8 +80,10 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 	}
 
 	return (
-		<main>
-			<p>{message}</p>
+		<main style={{backgroundColor: "black"}}>
+			<h1>{message}</h1>
+			<h2>{details}</h2>
+			<p>{stack}</p>
 		</main>
 	)
 }

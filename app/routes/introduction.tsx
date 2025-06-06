@@ -1,5 +1,6 @@
 import type { Route } from "./+types/introduction";
-import { useState, } from "react";
+import { useOutletContext, } from "react-router";
+import { useContext, } from "react";
 
 import "../styles/introduction.css";
 import { languageCookieUtils, } from "../utils/cookies";
@@ -19,18 +20,18 @@ export function meta({}: Route.MetaArgs) {
 	]
 }
 
-export async function loader({ request }: Route.LoaderArgs) {
-	const rawCookie = await request.headers.get("Cookie");
-	const cookie = await languageCookieUtils.parse(rawCookie);
-	return cookie;
+export async function loader({ request }: Route.ClientLoaderArgs) {
+	const cookies = await request.headers.get("Cookie");
+	const languageCookie = await languageCookieUtils.parse(cookies);
+	return languageCookie;
 } 
 
 export default function HomePage({ loaderData }: Route.ComponentProps) {
-	const cookie = loaderData;
+	console.log(loaderData);
 	return (
 		<main className="app-introduction">
 			<div className="app-introduction__text">
-				{cookie && cookie.language === "fr" ? (
+				{loaderData && loaderData.language === "fr" ? (
 					<>
 						<h2>{content_fr.introduction[0]}</h2>
 						<h3>{content_fr.introduction[1]}</h3>

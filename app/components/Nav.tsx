@@ -1,21 +1,28 @@
-import { Link, } from "react-router";
+import { Link, useOutletContext, } from "react-router";
+
+
+
+
+function handleClick(event: React.MouseEvent<HTMLAnchorElement>) {
+	const listElement: [] = document.querySelector(".app-nav__list");
+}
 
 
 export default function NavComponent() {
 	return (
 		<nav className="app-nav">
-			<ul>
+			<ul className="app-nav__list">
 				<li>
-					<Link to={{pathname: "/"}}>Introduction</Link>
+					<Link to={{pathname: "/"}} onClick={handleClick}>Introduction</Link>
 				</li>
 				<li>
-					<Link to={{pathname: "/about"}}>About</Link>
+					<Link to={{pathname: "/about"}} onClick={handleClick}>About</Link>
 				</li>
 				<li>
-					<Link to={{pathname: "/projects"}}>Projects</Link>
+					<Link to={{pathname: "/projects"}} onClick={handleClick}>Projects</Link>
 				</li>
 				<li>
-					<Link to={{pathname: "/contact"}}>Contact</Link>
+					<Link to={{pathname: "/contact"}} onClick={handleClick}>Contact</Link>
 				</li>
 			</ul>
 		</nav>
