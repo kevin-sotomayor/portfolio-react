@@ -27,7 +27,6 @@ export async function loader({ request }: Route.ClientLoaderArgs) {
 } 
 
 export default function HomePage({ loaderData }: Route.ComponentProps) {
-	console.log(loaderData);
 	return (
 		<main className="app-introduction">
 			<div className="app-introduction__text">

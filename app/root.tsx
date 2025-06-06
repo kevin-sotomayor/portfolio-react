@@ -1,17 +1,11 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, } from "react-router";
-import { createContext, } from "react";
 import type { Route } from "./+types/root";
-
 import favicon from "../public/favicon.ico";
 import "./styles/globals.css";
 import { languageCookieUtils, } from "./utils/cookies";
-import { parseAcceptLanguage } from "./utils/acceptLanguageUtils";
 
 
-interface PreferedLanguageInterface {
-	language: string,
-	quality: number,
-}
+
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const cookies = request.headers.get("Cookie");
@@ -42,8 +36,28 @@ export async function action({ request }: Route.ActionArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
+	const loaderData = useLoaderData();
+	if (!loaderData || loaderData.language === "en") {
+		return (
+			<html lang="en">
+				<head>
+					<meta charSet="utf-8" />
+					<meta name="viewport" content="width=device-width, initial-scale=1" />
+					<link rel="favicon" href={favicon} />
+					<Meta />
+					<Links />
+				</head>
+				<body className="app">
+					{children}
+					<ScrollRestoration />
+					<Scripts />
+				</body>
+			</html>
+		);
+	}
+
 	return (
-		<html>
+		<html lang="fr">
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,7 +71,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Scripts />
 			</body>
 		</html>
-	)
+	);
 }
 
 export default function App({ loaderData }: Route.ComponentProps) {
