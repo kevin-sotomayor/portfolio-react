@@ -1,11 +1,7 @@
 import type { Route } from "./+types/introduction";
-import { useOutletContext, } from "react-router";
-import { useContext, } from "react";
-
-import "../styles/introduction.css";
+import styles from "../styles/introduction.css?url";
 import { languageCookieUtils, } from "../utils/cookies";
-import content_fr from "../data/introduction_fr.json";
-import content_en from "../data/introduction_en.json";
+import introduction_content from "../data/introduction_content.json"
 
 
 
@@ -17,6 +13,12 @@ export function meta({}: Route.MetaArgs) {
 	return [
 		{ title: "Kevin Sotomayor" },
 		{ name: "description", content: "Kevin Sotomayor's portfolio homepage" },
+	]
+}
+
+export function links() {
+	return [
+		{ rel: "stylesheet", href: "styles" },
 	]
 }
 
@@ -32,13 +34,13 @@ export default function HomePage({ loaderData }: Route.ComponentProps) {
 			<div className="app-introduction__text">
 				{loaderData && loaderData.language === "fr" ? (
 					<>
-						<h2>{content_fr.introduction[0]}</h2>
-						<h3>{content_fr.introduction[1]}</h3>
+						<h2 className="app-introduction__text__first">{introduction_content.fr[0]}</h2>
+						<h3 className="app-introduction__text__second">{introduction_content.fr[1]}</h3>
 					</>
 				) : (
 					<>
-						<h2>{content_en.introduction[0]}</h2>
-						<h3>{content_en.introduction[1]}</h3>
+						<h2 className="app-introduction__text__first">{introduction_content.en[0]}</h2>
+						<h3 className="app-introduction__text__second">{introduction_content.en[1]}</h3>
 					</>
 				)}
 			</div>

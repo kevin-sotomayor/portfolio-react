@@ -122,6 +122,7 @@
 	font-family: "Manrope-SemiBold";
 	font-size: 0.9rem;
 	text-decoration: underline;
+	user-select: none;
 }
 
 .app-footer__language button:hover {
@@ -132,6 +133,7 @@
 	font-size: 2rem;
 	color: var(--default-text-color);
 	font-family: "Manrope-Light";
+	user-select: none;
 }
 
 .app-header__subtitle {
@@ -139,6 +141,7 @@
 	color: var(--default-text-color);
 	font-family: "Manrope-Light";
 	letter-spacing: 1.2px;
+	user-select: none;
 }
 
 .app-background {
@@ -190,7 +193,6 @@ main {
 	height: calc(100vh - 12rem);
 	width: 100vw;
 	z-index: 2;
-	color: white;
 	padding: 1rem;
 }
 

@@ -30,11 +30,6 @@
 	width: 4rem;
 	height: auto;
 	border-radius: 50%;
-	transform: scaleX(-1);
-}
-
-.app-contact__content__chat img:hover {
-	transform: scaleX(1);
 }
 
 .app-contact__content__chat a {

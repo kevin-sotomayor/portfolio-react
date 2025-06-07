@@ -5,14 +5,20 @@
 	justify-content: flex-end;
 }
 
-.app-introduction__text h2, h3 {
-	font-size: 0.9rem;
-	font-weight: 400;
+.app-introduction__text {
 	font-family: "Manrope-Regular";
 	animation: left-fade-in 2s;
 	user-select: none;
-	line-height: 1.5rem;
+	width: 100%;
+}
+
+.app-introduction__text > * {
 	margin: 0.5rem 0;
+	line-height: 1.5rem;
+	font-size: 0.9rem;
+	font-weight: 400;
+	text-align: justify;
+	color: var(--default-text-color);
 }
 
 @media screen and (min-width: 768px) {
