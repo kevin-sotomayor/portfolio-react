@@ -9,10 +9,7 @@ import FooterComponent from "./Footer";
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const cookies = request.headers.get("Cookie");
-	if (!cookies) {
-		return null;
-	}
-	const languageCookie = await languageCookieUtils.parse(cookies);
+	const languageCookie = await languageCookieUtils.parse(cookies) || {};
 	return languageCookie;
 }
 
