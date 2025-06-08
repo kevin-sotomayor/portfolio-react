@@ -6,6 +6,12 @@ import HeaderComponent from "./Header";
 import NavComponent from "./Nav";
 import FooterComponent from "./Footer";
 
+import "../styles/introduction.css";
+import "../styles/about.css";
+
+import "../styles/contact.css"
+
+
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const cookies = request.headers.get("Cookie");

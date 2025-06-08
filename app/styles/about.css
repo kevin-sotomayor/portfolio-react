@@ -1,9 +1,9 @@
-/* .app-about {
+.app-about {
 	display: flex;
 	flex-direction: column;
 }
 
-.app-about__text h2, h3, p {
+.app-about__text > * {
 	font-size: 0.9rem;
 	font-weight: 400;
 	font-family: "Manrope-Regular";
@@ -12,7 +12,6 @@
 	animation: left-fade-in 2s;
 	margin: 0.5rem 0;
 	color: var(--default-text-color);
-	width: 50vw;
 	text-align: justify;
 }
 
@@ -24,24 +23,22 @@
 	color: var(--hovered-text-color);
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 768px) {
 	.app-about__text {
 		width: 50%;
 	}
 }
 
+@media screen and (min-width: 1280px) {}
+
 @media screen and (min-width: 1600px) {
 	.app-about__text {
-		width: 25%;
+		width: 33%;
 	}
 }
 
-@media screen and (min-width: 1920px) {
-	.app-about__text {
-		width: 20%;
-	}
-}
+@media screen and (min-width: 1920px) {}
 
 @media screen and (min-width: 2560px) {}
 
-@media screen and (min-width: 3840px) {} */
+@media screen and (min-width: 3840px) {}

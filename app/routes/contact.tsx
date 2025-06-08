@@ -1,7 +1,6 @@
 import type { Route } from "./+types/contact";
-
+import { languageCookieUtils, } from "../utils/cookies";
 import pp from "../assets/pp.png";
-import "../styles/contact.css";
 
 
 
@@ -12,13 +11,23 @@ export function meta({}: Route.MetaArgs) {
 	]
 }
 
+export async function loader({ request }: Route.ClientLoaderArgs) {
+	const cookies = await request.headers.get("Cookie");
+	const languageCookie = await languageCookieUtils.parse(cookies);
+	return languageCookie;
+} 
 
-export default function ContactPage() {
+export default function ContactPage({ loaderData }: Route.ComponentProps) {
 	return (
 		<main className="app-contact">
 			<div className="app-contact__content">
 				<div className="app-contact__content__chat">
-					<a href="mailto:kevin.sotomayor@outlook.fr">Let's get in touch !</a>
+					{loaderData && loaderData.language === "fr" ? (
+						<a href="mailto:kevin.sotomayor@outlook.fr">Prenons contact !</a>
+					) : (
+						<a href="mailto:kevin.sotomayor@outlook.fr">Let's get in touch !</a>
+					)}
+					
 					<img src={pp} alt="ASCII ART Kevin Sotomayor" />
 				</div>
 				<ul className="app-contact__content__socials">
