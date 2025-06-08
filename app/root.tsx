@@ -20,6 +20,7 @@ export async function action({ request }: Route.ActionArgs) {
 	const formData = Object.fromEntries(rawFormData);
 	const rawCookie = await request.headers.get("Cookie");
 	const currentLocation = formData.submittedFrom.toString();
+	console.log(formData);
 
 	switch (Object.keys(formData)[0]) {
 		case "language":

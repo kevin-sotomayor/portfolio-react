@@ -113,7 +113,7 @@
 	gap: 1rem;
 }
 
-.app-footer__language button {
+.app-footer__language > button {
 	cursor: pointer;
 	height: 1.2rem;
 	color: var(--default-text-color);
@@ -123,10 +123,17 @@
 	font-size: 0.9rem;
 	text-decoration: underline;
 	user-select: none;
+	transition: color 0.25s;
 }
 
-.app-footer__language button:hover {
+.app-footer__language > button:hover {
 	color: var(--hovered-text-color);
+}
+
+.app-footer .active {
+	text-decoration: none;
+	color: var(--hovered-text-color);
+	font-family: Manrope-ExtraBold;
 }
 
 .app-header__title {
