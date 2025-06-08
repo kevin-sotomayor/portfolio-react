@@ -3,6 +3,7 @@ import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
 import "./styles/globals.css";
 import { languageCookieUtils, } from "./utils/cookies";
+import LayoutComponent from "./components/Layout";
 
 
 
@@ -20,7 +21,6 @@ export async function action({ request }: Route.ActionArgs) {
 	const formData = Object.fromEntries(rawFormData);
 	const rawCookie = await request.headers.get("Cookie");
 	const currentLocation = formData.submittedFrom.toString();
-	console.log(formData);
 
 	switch (Object.keys(formData)[0]) {
 		case "language":
@@ -94,10 +94,12 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 	}
 
 	return (
-		<main style={{backgroundColor: "black"}}>
-			<h1>{message}</h1>
-			<h2>{details}</h2>
-			<p>{stack}</p>
+		<main className="app-error">
+			<div className="app-error__content">
+				<h1>{message}</h1>
+				<h2>{details}</h2>
+				<a href="/">Go back home</a>
+			</div>
 		</main>
 	)
 }

@@ -67,6 +67,15 @@
 	}
 }
 
+@keyframes neon {
+	0% {
+		text-shadow: none;
+	}
+	100% {
+		text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5);
+	}
+}
+
 :root {
 	--default-text-color: rgba(255, 255, 255, 0.8);
 	--hovered-text-color: rgba(255, 255, 255, 1);
@@ -75,6 +84,46 @@
 
 .app {
 	position: fixed;
+}
+
+.app-error {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.app-error__content {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.app-error__content > * {
+	color: var(--default-text-color);
+	font-family: "Manrope-Light";
+}
+
+.app-error__content > a {
+	animation: neon 1s infinite alternate-reverse;
+	margin: 1rem 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 8rem;
+	height: 3rem;
+	border: solid 1px rgba(255, 255, 255, 0.33);
+	transition: transform 0.25s;
+	text-decoration: none;
+}
+
+.app-error__content > a:hover {
+	transform: scale(1.01);
 }
 
 .app-header {
