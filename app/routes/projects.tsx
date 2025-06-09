@@ -1,7 +1,59 @@
 import type { Route, } from "./+types/projects";
 import { languageCookieUtils } from "../utils/cookies";
-import projectsContent from "../data/projects_content.json";
-import img8beats from "../assets/8beats.png";
+import eightbeatsImg from "../assets/8beats.png";
+import topshotsImg from "../assets/topshots.png";
+import purplepropositionImg from "../assets/purpleproposition.png";
+
+
+
+const projects = {
+	fr: [
+		{
+			"company": "Topshots",
+			"mission": "Refonte totale du site Web de l'entreprise",
+			"url": "https://www.topshots.fr",
+			"img_url": topshotsImg,
+			"img_alt": "Page d'accueil du site actuel"
+		},
+		{
+			"company": "8Beats",
+			"mission": "Création de composants React",
+			"url": "https://www.8beats.co",
+			"img_url": eightbeatsImg,
+			"img_alt": "Page d'accueil de l'application Web"
+		},
+		{
+			"company": "purpleproposition",
+			"mission": "Création du portfolio de designer graphique",
+			"url": "https://www.purpleproposition.fr",
+			"img_url": purplepropositionImg,
+			"img_alt": "Vue du portfolio"
+		}
+	],
+	en: [
+		{
+			"company": "Topshots",
+			"mission": "Total redesign of the company Website",
+			"url": "https://www.topshots.fr",
+			"img_url": topshotsImg,
+			"img_alt": "Homepage of the current version of the Website"
+		},
+		{
+			"company": "8Beats",
+			"mission": "Creation of React components",
+			"url": "https://www.8beats.co",
+			"img_url": eightbeatsImg,
+			"img_alt": "Homepage of the Web app"
+		},
+		{
+			"company": "purpleproposition",
+			"mission": "Development and deploying of a graphic designer's portfolio",
+			"url": "https://www.purpleproposition.fr",
+			"img_url": purplepropositionImg,
+			"img_alt": "Portfolio view"
+		}
+	]
+}
 
 
 
@@ -23,25 +75,25 @@ export default function ProjectsPage({ loaderData }: Route.ComponentProps) {
 		<main className="app-projects">
 			<ul>
 				{loaderData && loaderData.language === "fr" ? (
-					projectsContent.fr.map((project, index) => (
+					projects.fr.map((project, index) => (
 						<li key={index}>
-							<a href={project.url}>
+							<a href={project.url} target="_blank">
 								<article>
 									<p>{project.company}</p>
 									<p>{project.mission}</p>
-									<img src={img8beats} alt={project.img_alt} />
+									<img src={project.img_url} alt={project.img_alt} />
 								</article>
 							</a>
 						</li>
 					))
 				) : (
-					projectsContent.fr.map((project, index) => (
+					projects.en.map((project, index) => (
 						<li key={index}>
-							<a href={project.url}>
+							<a href={project.url} target="_blank">
 								<article>
 									<p>{project.company}</p>
 									<p>{project.mission}</p>
-									<img src={img8beats} alt={project.img_alt} />
+									<img src={project.img_url} alt={project.img_alt} />
 								</article>
 							</a>
 						</li>
