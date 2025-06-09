@@ -8,8 +8,8 @@ import FooterComponent from "./Footer";
 
 import "../styles/introduction.css";
 import "../styles/about.css";
-
-import "../styles/contact.css"
+import "../styles/projects.css";
+import "../styles/contact.css";
 
 
 

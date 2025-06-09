@@ -1,26 +1,55 @@
-.app-introduction {
+.app-projects {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	
+}
+
+.app-projects > ul {
+	list-style: none;
+}
+
+.app-projects ul > li {
+	width: 33vw;
+	border: solid 1px white;
+}
+
+.app-projects > ul > li > a {
+	color: var(--default-text-color);
+	font-family: "Manrope-Light";
+	text-decoration: none;
+}
+
+.app-projects > ul > li > a > article {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	justify-content: flex-end;
+	padding: 0.5rem;
 }
 
-.app-introduction__text {
+.app-projects > ul > li > a > article > img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16/9;
+}
+
+/* .app-introduction__text {
 	font-family: "Manrope-Regular";
 	animation: left-fade-in 2s;
 	user-select: none;
-}
+	width: 100%;
+} */
 
-.app-introduction__text > * {
+/* .app-introduction__text > * {
 	margin: 0.5rem 0;
 	line-height: 1.5rem;
 	font-size: 0.9rem;
 	font-weight: 400;
 	text-align: justify;
 	color: var(--default-text-color);
-}
+} */
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
 	.app-introduction__text {
 		width: 50%;
 	}
@@ -42,7 +71,7 @@
 	.app-introduction__text {
 		width: 20%;
 	}
-}
+} */
 
 @media screen and (min-width: 2560px) {}
 

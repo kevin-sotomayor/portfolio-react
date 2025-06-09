@@ -1,0 +1,48 @@
+{
+	"fr": [
+		{
+			"company": "Topshots",
+			"mission": "Refonte totale du site Web de l'entreprise",
+			"url": "https://www.topshots.fr",
+			"img_url": "../assets/topshots.png",
+			"img_alt": "Page d'accueil du site actuel"
+		},
+		{
+			"company": "8Beats",
+			"mission": "Création de composants React",
+			"url": "https://www.8beats.co",
+			"img_url": "../assets/8beats.png",
+			"img_alt": "Page d'accueil de l'application Web"
+		},
+		{
+			"company": "purpleproposition",
+			"mission": "Création du portfolio de designer graphique",
+			"url": "https://www.purpleproposition.fr",
+			"img_url": "../assets/purpleproposition.png",
+			"img_alt": "Vue du portfolio"
+		}
+	],
+	"en": [
+		{
+			"company": "Topshots",
+			"mission": "Total redesign of the company Website",
+			"url": "https://www.topshots.fr",
+			"img_url": "../assets/topshots.png",
+			"img_alt": "Homepage of the current version of the Website"
+		},
+		{
+			"company": "8Beats",
+			"mission": "Creating React components",
+			"url": "https://www.8beats.co",
+			"img_url": "../assets/8beats.png",
+			"img_alt": "Homepage of the Web app"
+		},
+		{
+			"company": "purpleproposition",
+			"mission": "Creating a graphic designer's portfolio",
+			"url": "https://www.purpleproposition.fr",
+			"img_url": "../assets/purpleproposition.png",
+			"img_alt": "Portfolio view"
+		}
+	]
+}

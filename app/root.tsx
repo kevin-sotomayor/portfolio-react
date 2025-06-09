@@ -3,7 +3,6 @@ import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
 import "./styles/globals.css";
 import { languageCookieUtils, } from "./utils/cookies";
-import LayoutComponent from "./components/Layout";
 
 
 
