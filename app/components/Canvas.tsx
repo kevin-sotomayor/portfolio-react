@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, } from "react";
+import { useRef, useMemo, } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -104,7 +104,6 @@ const fragmentShader = `
         mainImage(gl_FragColor, gl_FragCoord.xy);
     }
 `;
-
 
 function Shader() {
 	const meshRef = useRef(0);

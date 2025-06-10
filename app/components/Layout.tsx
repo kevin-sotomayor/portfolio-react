@@ -1,5 +1,6 @@
-import { Outlet, } from "react-router";
+import { Outlet, useNavigation, } from "react-router";
 import type { Route } from "./+types/Layout";
+import { Suspense, } from "react";
 import { languageCookieUtils } from "../utils/cookies";
 import CanvasComponent from "./Canvas";
 import HeaderComponent from "./Header";
@@ -21,6 +22,9 @@ export async function loader({ request }: Route.LoaderArgs) {
 
 
 export default function LayoutComponent({ loaderData }: Route.ComponentProps) {
+	const navigation = useNavigation();
+	const isNavigating = Boolean(navigation.location);
+	console.log(navigation);
 	let language;
 	if (!loaderData) {
 		language = "en"
@@ -30,8 +34,11 @@ export default function LayoutComponent({ loaderData }: Route.ComponentProps) {
 		<>
 			<HeaderComponent languageProp={language}/>
 			<NavComponent languageProp={language}/>
+			{isNavigating && (
+				<p style={{position: "fixed", top: "0", left:"0", backgroundColor: "red"}}>loading</p>
+			)}
 			<CanvasComponent />
-				<Outlet />
+			<Outlet />
 			<FooterComponent languageProp={language}/>
 		</>
 	)

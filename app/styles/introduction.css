@@ -7,14 +7,14 @@
 
 .app-introduction__text {
 	font-family: "Manrope-Regular";
-	animation: left-fade-in 2s;
+	animation: left-fade-in 1.5s;
 	user-select: none;
 }
 
 .app-introduction__text > * {
 	margin: 0.5rem 0;
 	line-height: 1.5rem;
-	font-size: 0.9rem;
+	font-size: 1rem;
 	font-weight: 400;
 	text-align: justify;
 	color: var(--default-text-color);
