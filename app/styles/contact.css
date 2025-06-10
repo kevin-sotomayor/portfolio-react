@@ -37,6 +37,7 @@
 	user-select: none;
 	color: rgba(255, 255, 255, 0.8);
 	transition: color 0.25s;
+	animation: neon 1s infinite alternate-reverse;
 }
 
 .app-contact__content__chat a:hover {

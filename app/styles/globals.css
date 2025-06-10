@@ -235,12 +235,20 @@
 	font-size: 0.9rem;
 	user-select: none;
 	cursor: default;
+	transition: color 0.25s;
 }
 
 .app-nav ul li a:hover {
 	cursor: pointer;
 	color: var(--hovered-text-color);
 }
+
+.app-nav ul li .active-route {
+	text-decoration: none;
+	font-family: "Manrope-Bold";
+	color: var(--hovered-text-color);
+}
+
 
 main {
 	position: fixed;

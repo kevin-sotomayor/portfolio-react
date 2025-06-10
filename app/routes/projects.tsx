@@ -10,7 +10,7 @@ const projects = {
 	fr: [
 		{
 			"company": "Topshots",
-			"mission": "Refonte totale du site Web de l'entreprise",
+			"mission": "Refonte totale du site Web de l'entreprise en cours",
 			"url": "https://www.topshots.fr",
 			"img_url": topshotsImg,
 			"img_alt": "Page d'accueil du site actuel"
@@ -36,7 +36,7 @@ const projects = {
 			"mission": "Total redesign of the company Website",
 			"url": "https://www.topshots.fr",
 			"img_url": topshotsImg,
-			"img_alt": "Homepage of the current version of the Website"
+			"img_alt": "Homepage of the current version of the Website in progress"
 		},
 		{
 			"company": "8Beats",
