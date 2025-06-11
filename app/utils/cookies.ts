@@ -13,6 +13,6 @@ export const policyCookiesUtils = createCookie("cookie_policy", {
 	path: "/",
 	sameSite: "lax",
 	httpOnly: true,
-	maxAge: 60 * 60 * 24 * 365, // 1 year
+	maxAge: 60 * 60 * 24 * 365,
 	secure: true,
 });

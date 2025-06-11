@@ -59,8 +59,8 @@ export default function LayoutComponent({ loaderData }: Route.ComponentProps) {
 					<HeaderComponent languageProp={language}/>
 					<NavComponent languageProp={language}/>
 					<ModalComponent />
-					<CanvasComponent />
-					<Outlet />
+					<CanvasComponent/>
+					<Outlet isBlurred={true}/>
 					<FooterComponent languageProp={language}/>
 				</>
 			)}
