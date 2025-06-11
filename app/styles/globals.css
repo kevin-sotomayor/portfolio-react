@@ -76,6 +76,15 @@
 	}
 }
 
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 :root {
 	--default-text-color: rgba(255, 255, 255, 0.8);
 	--hovered-text-color: rgba(255, 255, 255, 1);
@@ -84,6 +93,7 @@
 
 .app {
 	position: fixed;
+	background-color: rgba(0, 0, 0, 0.95);
 }
 
 .app-loading {
@@ -221,6 +231,7 @@
 	height: 100vh;
 	width: 100vw;
 	z-index: 1;
+	animation: fade-in 5s;
 }
 
 .app-nav {
