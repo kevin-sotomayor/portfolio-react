@@ -19,7 +19,6 @@ export async function loader({ request }: Route.LoaderArgs) {
 export async function action({ request }: Route.ActionArgs) {
 	const rawFormData = await request.formData();
 	const formData = Object.fromEntries(rawFormData);
-	console.log(formData);
 	if (formData.language) {
 		const rawCookie = await request.headers.get("Cookie");
 		const currentLocation = formData.submittedFrom.toString();
