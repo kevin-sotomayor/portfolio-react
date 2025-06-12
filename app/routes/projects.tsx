@@ -6,7 +6,6 @@ import purplepropositionImg from "../assets/purpleproposition.png";
 
 
 
-
 const projects = {
 	fr: [
 		{
@@ -65,9 +64,9 @@ export function meta({}: Route.MetaArgs) {
 
 export function link({}: Route.MetaArgs) {
 	return [
-		{ href: topshotsImg, rel: "preload" as "img" },
-		{ href: eightbeatsImg, rel: "preload" as "img", },
-		{ href: purplepropositionImg, rel: "preload" as "img" },
+		{ href: topshotsImg, rel: "preload" },
+		{ href: eightbeatsImg, rel: "preload" },
+		{ href: purplepropositionImg, rel: "preload" },
 	]
 }
 
