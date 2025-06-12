@@ -96,51 +96,6 @@
 	background-color: rgba(0, 0, 0, 0.95);
 }
 
-.blurred {
-	filter: blur(10px);
-}
-
-.app-modal {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 100;
-	border: solid 1px red;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	padding: 1rem;
-	user-select: none;
-}
-
-.app-modal__text {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	align-items: center;
-	justify-content: center;
-	font-family: "Manrope-Light";
-	color: var(--default-text-color);
-	gap: 1rem;
-	text-align: justify;
-}
-
-.app-modal__text > form > button {
-	width: 8rem;
-	padding: 0.2rem;
-	cursor: pointer;
-	background-color: transparent;
-	border: solid 1px var(--default-text-color);
-	color: var(--default-text-color);
-}
-
-.app-modal__text > form > button:hover {
-	color: var(--hovered-text-color);
-	border: solid 1px var(--hovered-text-color);
-}
-
 .app-error {
 	position: fixed;
 	top: 0;
@@ -317,30 +272,4 @@ main {
 	width: 100vw;
 	z-index: 2;
 	padding: 1rem;
-}
-
-@media screen and (min-width: 768px) {
-	.app-modal {
-		aspect-ratio: 1/1;
-		width: 50%;
-		height: auto;
-	}
-}
-
-@media screen and (min-width: 1280px) {
-	.app-modal {
-		aspect-ratio: 2.35/1;
-	}
-}
-
-@media screen and (min-width: 1600px) {
-	.app-modal {
-		width: 40%;
-	}
-}
-
-@media screen and (min-width: 1920px) {
-	.app-modal {
-		width: 35%;
-	}
 }

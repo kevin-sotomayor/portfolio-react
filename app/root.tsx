@@ -1,9 +1,9 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, } from "react-router";
-import React, { useEffect, } from "react";
+import React, { useEffect, useState, } from "react";
 import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
 import "./styles/globals.css";
-import { languageCookieUtils, policyCookiesUtils, } from "./utils/cookies";
+import { languageCookieUtils, } from "./utils/cookies";
 
 
 
@@ -19,17 +19,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 export async function action({ request }: Route.ActionArgs) {
 	const rawFormData = await request.formData();
 	const formData = Object.fromEntries(rawFormData);
-	if (formData.hasAcceptedPolicy) {
-		const rawCookie = await request.headers.get("Cookie");
-		const currentLocation = formData.submittedFrom.toString();
-		const cookie = await policyCookiesUtils.parse(rawCookie) || {};
-		cookie.hasAcceptedPolicy = formData.hasAcceptedPolicy;
-		return redirect(currentLocation, {
-			headers: {
-				"Set-Cookie": await policyCookiesUtils.serialize(cookie),
-			}
-		})
-	}
+
 	if (formData.language) {
 		const rawCookie = await request.headers.get("Cookie");
 		const currentLocation = formData.submittedFrom.toString();
@@ -87,10 +77,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-	useEffect(() => {
-		console.log("DOM loaded");
-	}, []);
-
+	useEffect(() => {});
 	return <Outlet />;
 }
 
