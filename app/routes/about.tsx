@@ -14,12 +14,6 @@ interface DataInterface {
 	}
 }
 
-export function headers(_: Route.HeadersArgs) {
-  return {
-    'Cache-Control': 's-maxage=1, stale-while-revalidate=59',
-  };
-}
-
 export function meta({}: Route.MetaArgs) {
 	return [
 		{ title: "Kevin Sotomayor - About" },
@@ -39,7 +33,7 @@ export async function action({ request }: Route.ActionArgs) {
 	const rawFormData = await request.formData();
 	const formData = Object.fromEntries(rawFormData);
 	console.log(formData);
-	return formData;
+	return formData
 }
 
 // Not the default type because it was buggy for some reason Dentge
