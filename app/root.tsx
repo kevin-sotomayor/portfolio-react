@@ -1,5 +1,5 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, } from "react-router";
-import React, { useEffect, useState, } from "react";
+import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
 import "./styles/globals.css";
@@ -80,7 +80,7 @@ export default function App() {
 	useEffect(() => {
 		const backgroundElement: HTMLDivElement | null = document.querySelector(".app-background");
 		if (backgroundElement) {
-			backgroundElement.style.animation = "fade-in 2.5s forwards";
+			backgroundElement.classList.add("loaded");
 		}
 	});
 	return <Outlet />;
