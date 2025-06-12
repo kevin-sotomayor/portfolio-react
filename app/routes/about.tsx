@@ -13,6 +13,12 @@ interface DataInterface {
 	}
 }
 
+export function headers(_: Route.HeadersArgs) {
+  return {
+    'Cache-Control': 's-maxage=1, stale-while-revalidate=59',
+  };
+}
+
 export function meta({}: Route.MetaArgs) {
 	return [
 		{ title: "Kevin Sotomayor - About" },

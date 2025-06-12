@@ -11,6 +11,12 @@ export function meta({}: Route.MetaArgs) {
 	]
 }
 
+export function headers(_: Route.HeadersArgs) {
+  return {
+    'Cache-Control': 's-maxage=1, stale-while-revalidate=59',
+  };
+}
+
 export async function loader({ request }: Route.ClientLoaderArgs) {
 	const cookies = await request.headers.get("Cookie");
 	const languageCookie = await languageCookieUtils.parse(cookies) || {};
