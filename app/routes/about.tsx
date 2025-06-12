@@ -1,5 +1,5 @@
 import type { Route } from "./+types/introduction";
-import { Form, useActionData, useFetcher, } from "react-router";
+import { Form, useActionData, useFetcher, redirect, } from "react-router";
 import { languageCookieUtils, } from "../utils/cookies";
 import aboutContent from "../data/about_content.json";
 
@@ -32,8 +32,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 export async function action({ request }: Route.ActionArgs) {
 	const rawFormData = await request.formData();
 	const formData = Object.fromEntries(rawFormData);
-	console.log(formData);
-	return formData
+	return redirect("/about");
 }
 
 // Not the default type because it was buggy for some reason Dentge
