@@ -1,8 +1,9 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, } from "react-router";
+import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
 import "./styles/globals.css";
-import { languageCookieUtils, } from "./utils/cookies";
+import { languageCookieUtils, policyCookiesUtils, } from "./utils/cookies";
 
 
 
@@ -18,20 +19,32 @@ export async function loader({ request }: Route.LoaderArgs) {
 export async function action({ request }: Route.ActionArgs) {
 	const rawFormData = await request.formData();
 	const formData = Object.fromEntries(rawFormData);
-	const rawCookie = await request.headers.get("Cookie");
-	const currentLocation = formData.submittedFrom.toString();
-
-	switch (Object.keys(formData)[0]) {
-		case "language":
-			const cookie = await languageCookieUtils.parse(rawCookie) || {};
-			cookie.language = formData.language;
-			return redirect(currentLocation, {
-				headers: {
-					"Set-Cookie": await languageCookieUtils.serialize(cookie),
-				}
-			})
+	if (formData.hasAcceptedPolicy) {
+		const rawCookie = await request.headers.get("Cookie");
+		const currentLocation = formData.submittedFrom.toString();
+		const cookie = await policyCookiesUtils.parse(rawCookie) || {};
+		cookie.hasAcceptedPolicy = formData.hasAcceptedPolicy;
+		return redirect(currentLocation, {
+			headers: {
+				"Set-Cookie": await policyCookiesUtils.serialize(cookie),
+			}
+		})
 	}
-	return;
+	if (formData.language) {
+		const rawCookie = await request.headers.get("Cookie");
+		const currentLocation = formData.submittedFrom.toString();
+		const cookie = await languageCookieUtils.parse(rawCookie) || {};
+		cookie.language = formData.language;
+		return redirect(currentLocation, {
+			headers: {
+				"Set-Cookie": await languageCookieUtils.serialize(cookie),
+			}
+		})
+	}
+	// just in case
+	else {
+		return;
+	}
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -73,10 +86,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	);
 }
 
-export default function App({ loaderData }: Route.ComponentProps) {
-	return (
-		<Outlet />
-	);
+export default function App() {
+	useEffect(() => {
+		console.log("DOM loaded");
+	}, []);
+
+	return <Outlet />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

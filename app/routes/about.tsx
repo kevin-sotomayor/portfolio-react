@@ -16,8 +16,7 @@ export async function loader({ request }: Route.ClientLoaderArgs) {
 	return languageCookie;
 } 
 
-export default function AboutPage({ loaderData } : Route.ComponentProps, isBlurred: Boolean) {
-	console.log(isBlurred);
+export default function AboutPage({ loaderData } : Route.ComponentProps ) {
 	return (
 		<main className="app-about">
 			<div className="app-about__text">
