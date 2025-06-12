@@ -1,5 +1,5 @@
 import type { Route } from "./+types/introduction";
-import { Form, useActionData, } from "react-router";
+import { Form, useActionData, useFetcher, } from "react-router";
 import { languageCookieUtils, } from "../utils/cookies";
 import aboutContent from "../data/about_content.json";
 
@@ -38,8 +38,7 @@ export async function action({ request }: Route.ActionArgs) {
 
 // Not the default type because it was buggy for some reason Dentge
 export default function AboutPage({ loaderData }: DataInterface ) {
-	const actionData = useActionData();
-	console.log(actionData);
+	let fetcher = useFetcher();
 	return (
 		<main className="app-about">
 			<div className="app-about__text">
@@ -55,10 +54,10 @@ export default function AboutPage({ loaderData }: DataInterface ) {
 						)}
 					</>
 				)}
-				<Form method="post">
+				<fetcher.Form method="post">
 					<input type="text" name="test"/>
 					<button type="submit">Send</button>
-				</Form>
+				</fetcher.Form>
 			</div>
 		</main>
 	)
