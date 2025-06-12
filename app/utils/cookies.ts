@@ -3,7 +3,7 @@ import { createCookie, } from "react-router";
 
 export const languageCookieUtils = createCookie("lang", {
 	path: "/",
-	sameSite: "lax",
+	sameSite: "strict",
 	httpOnly: true,
 	maxAge: 60 * 60 * 24 * 365, // 1 year
 	secure: true,
