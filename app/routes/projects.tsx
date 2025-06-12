@@ -6,55 +6,6 @@ import purplepropositionImg from "../assets/purpleproposition.png";
 
 
 
-const projects = {
-	fr: [
-		{
-			"company": "Topshots",
-			"mission": "Refonte totale du site Web de l'entreprise en cours",
-			"url": "https://www.topshots.fr",
-			"img_url": topshotsImg,
-			"img_alt": "Page d'accueil du site actuel"
-		},
-		{
-			"company": "8Beats",
-			"mission": "Création de composants React",
-			"url": "https://www.8beats.co",
-			"img_url": eightbeatsImg,
-			"img_alt": "Page d'accueil de l'application Web"
-		},
-		{
-			"company": "purpleproposition",
-			"mission": "Création du portfolio de designer graphique",
-			"url": "https://www.purpleproposition.fr",
-			"img_url": purplepropositionImg,
-			"img_alt": "Vue du portfolio"
-		}
-	],
-	en: [
-		{
-			"company": "Topshots",
-			"mission": "Total redesign of the company Website",
-			"url": "https://www.topshots.fr",
-			"img_url": topshotsImg,
-			"img_alt": "Homepage of the current version of the Website in progress"
-		},
-		{
-			"company": "8Beats",
-			"mission": "Creation of React components",
-			"url": "https://www.8beats.co",
-			"img_url": eightbeatsImg,
-			"img_alt": "Homepage of the Web app"
-		},
-		{
-			"company": "purpleproposition",
-			"mission": "Development and deploying of a graphic designer's portfolio",
-			"url": "https://www.purpleproposition.fr",
-			"img_url": purplepropositionImg,
-			"img_alt": "Portfolio view"
-		}
-	]
-}
-
 export function meta({}: Route.MetaArgs) {
 	return [
 		{ title: "Kevin Sotomayor - Projects" },
@@ -71,18 +22,66 @@ export function link({}: Route.MetaArgs) {
 }
 
 export async function loader({ request }: Route.LoaderArgs) {
-	let clientData;
+	let data;
+	const projects = {
+		fr: [
+			{
+				"company": "Topshots",
+				"mission": "Refonte totale du site Web de l'entreprise en cours",
+				"url": "https://www.topshots.fr",
+				"img_url": topshotsImg,
+				"img_alt": "Page d'accueil du site actuel"
+			},
+			{
+				"company": "8Beats",
+				"mission": "Création de composants React",
+				"url": "https://www.8beats.co",
+				"img_url": eightbeatsImg,
+				"img_alt": "Page d'accueil de l'application Web"
+			},
+			{
+				"company": "purpleproposition",
+				"mission": "Création du portfolio de designer graphique",
+				"url": "https://www.purpleproposition.fr",
+				"img_url": purplepropositionImg,
+				"img_alt": "Vue du portfolio"
+			}
+		],
+		en: [
+			{
+				"company": "Topshots",
+				"mission": "Total redesign of the company Website",
+				"url": "https://www.topshots.fr",
+				"img_url": topshotsImg,
+				"img_alt": "Homepage of the current version of the Website in progress"
+			},
+			{
+				"company": "8Beats",
+				"mission": "Creation of React components",
+				"url": "https://www.8beats.co",
+				"img_url": eightbeatsImg,
+				"img_alt": "Homepage of the Web app"
+			},
+			{
+				"company": "purpleproposition",
+				"mission": "Development and deploying of a graphic designer's portfolio",
+				"url": "https://www.purpleproposition.fr",
+				"img_url": purplepropositionImg,
+				"img_alt": "Portfolio view"
+			}
+		]
+	}
 	const cookies = await request.headers.get("Cookie");
 	const languageCookie = await languageCookieUtils.parse(cookies) || {};
-	languageCookie.language === "fr" ? clientData = projects.fr : clientData = projects.en;
-	return clientData;
+	languageCookie.language === "fr" ? data = projects.fr : data = projects.en;
+	return data;
 }
 
 export default function ProjectsPage({ loaderData }: Route.ComponentProps) {
 	return (
 		<main className="app-projects">
 			<ul>
-				{projects.fr.map((project, index: number) => (
+				{loaderData.map((project, index: number) => (
 					<li key={index}>
 						<a href={project.url} target="_blank">
 							<article>
