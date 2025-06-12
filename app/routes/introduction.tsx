@@ -4,10 +4,6 @@ import introductionContent from "../data/introduction_content.json"
 
 
 
-interface DataInterface {
-	introduction: string[],
-}
-
 export function meta({}: Route.MetaArgs) {
 	return [
 		{ title: "Kevin Sotomayor" },
