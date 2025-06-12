@@ -30,7 +30,6 @@ export async function loader({ request }: Route.LoaderArgs) {
 
 // Not the default type because it was buggy for some reason Dentge
 export default function AboutPage({ loaderData }: DataInterface ) {
-	console.log(loaderData);
 	return (
 		<main className="app-about">
 			<div className="app-about__text">
