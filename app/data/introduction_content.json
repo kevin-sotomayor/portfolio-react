@@ -1,8 +1,10 @@
 {
 	"fr": [
-		"Né en 1994 et basé à Lyon, France, je suis un programmeur curieux, constamment à la recherche de nouvelles idées pour créer des expériences Web esthétiques, agréables et performantes."
+		"Né en 1994 et basé à Lyon, France, je suis un programmeur curieux, constamment à la recherche de nouvelles idées pour créer des expériences Web esthétiques, agréables et performantes.",
+		"Je suis spécialisé en développement Front-End avec JavaScript, TypeScript, React et son framework React Router v7."
 	],
 	"en":[
-		"Born in 1994 and based in Lyon, France, I am a curious programmer, constantly on the lookout for new ideas to create a more aesthetic, enjoyable and high-performance Web experience"
+		"Born in 1994 and based in Lyon, France, I am a curious programmer, constantly on the lookout for new ideas to create a more aesthetic, enjoyable and high-performance Web experience",
+		"I specialize in Front-End development with JavaScript, TypeScript, React and its framework React Router v7."
 	]
 }

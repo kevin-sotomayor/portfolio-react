@@ -1,10 +1,12 @@
 {
 	"fr": [
-		"Définitivement reconverti professionnellement en 2022, j'ai toujours un été un grand passionné d'informatique. Plus jeune, cet intérêt s'exprimait à travers la création de sites Webs statiques personnels et de projets divers en Python, mais il s'est rapidement transformé en une addiction à l'apprentissage de nouvelles compétences, qu'elles soient liées au Web, aux systèmes d'exploitation, ou à des domaines connexes tel que le graphisme 3D ou encore les architectures de réseaux. ",
-		"Je suis spécialisé en construction d'interfaces graphiques pour des pages statiques et applications Web plus complexes avec HTML, CSS, JavaScript, TypeScript, React et son désormais framework React Router v7 (anciennement Remix)."
+		"Définitivement reconverti professionnellement en 2022, j'ai toujours un été un grand passionné d'informatique. Plus jeune, cet intérêt s'exprimait à travers la création de sites Web statiques personnels et de projets divers en Python, mais il s'est rapidement transformé en une addiction à l'apprentissage de nouvelles compétences, qu'elles soient liées au Web, aux systèmes d'exploitation, ou à des domaines connexes tel que le graphisme 3D ou encore les architectures de réseaux.",
+		"Je suis spécialisé en développement Front-End mais je suis également capable de réaliser des projets complets avec Node et son framework Express pour le Back-End, ainsi que PostgreSQL pour le traitement de données.",
+		"Je suis ouvert à toute opportunité professionnelle, alors n'hésitez pas à me contacter si une collaboration vous intéresse."
 	],
 	"en": [
-		"Definitely reconverted professionally in 2022, I've always had a great passion for computers. When I was younger, this interest was expressed through the creation of personal static websites and various projects in Python, but it quickly turned into an addiction to learning new skills, whether related to the Web, operating systems, or related fields such as 3D graphics or network architectures.",
-		"I specialize in building graphical interfaces for static pages and more complex Web applications using HTML, CSS, JavaScript, TypeScript, React and its new framework React Router v7 (formerly Remix)."
+		"Definitely reconverted professionally in 2022, I've always had a great passion for computers. When I was younger, this interest was expressed through the creation of personal static Websites and various projects in Python, but it quickly turned into an addiction to learning new skills, whether related to the Web, operating systems, or related fields such as 3D graphics or network architectures.",
+		"I specialize in Front-End development, but I'm also able to carry out complete projects using Node and its Express framework for the Back-End, as well as PostgreSQL for data processing.",
+		"I'm open to all professional opportunities, so don't hesitate to contact me if you're interested in working with me."
 	]
 }

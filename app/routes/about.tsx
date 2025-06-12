@@ -35,12 +35,13 @@ export default function AboutPage({ loaderData }: DataInterface ) {
 			<div className="app-about__text">
 				{loaderData && (
 					<>
-						<h2>{loaderData.data[0]}</h2>
-						<h3>{loaderData.data[1]}</h3>
+						<p>{loaderData.data[0]}</p>
+						<p>{loaderData.data[1]}</p>
+						<p>{loaderData.data[2]}</p>
 						{loaderData.languageCookie.language === "fr" ? (
-							<p>Vous pouvez trouver mon CV <a target="_blank" href="/public/cv_kevin_sotomayor.pdf">ici</a> si vous êtes curieux de connaître mon parcours professionnel.</p>
+							<p>Vous pouvez trouver mon CV <a target="_blank" href="/cv_kevin_sotomayor.pdf">ici</a> si vous êtes curieux de connaître mon parcours professionnel.</p>
 						) : (
-							<p>You can find my resume <a target="_blank" href="/public/cv_kevin_sotomayor.pdf">here</a> if you are curious about my profesionnal background.</p>
+							<p>You can find my resume <a target="_blank" href="/cv_kevin_sotomayor.pdf">here</a> if you are curious about my profesionnal background.</p>
 						)}
 					</>
 				)}
