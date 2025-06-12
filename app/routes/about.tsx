@@ -22,7 +22,7 @@ export function meta({}: Route.MetaArgs) {
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const cookies = await request.headers.get("Cookie");
-	const languageCookie = await languageCookieUtils.parse(cookies);
+	const languageCookie = await languageCookieUtils.parse(cookies) || {};
 	let data;
 	languageCookie.language === "fr" ? data = aboutContent.fr : data = aboutContent.en;
 	return { data, languageCookie };
