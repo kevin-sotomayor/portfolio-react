@@ -1,9 +1,9 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, isRouteErrorResponse, } from "react-router";
 import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
-import "./styles/globals.css";
 import { languageCookieUtils, } from "./utils/cookies";
+import "./styles/globals.css";
 
 
 
@@ -19,7 +19,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 export async function action({ request }: Route.ActionArgs) {
 	const rawFormData = await request.formData();
 	const formData = Object.fromEntries(rawFormData);
-
+	console.log(formData);
 	if (formData.language) {
 		const rawCookie = await request.headers.get("Cookie");
 		const currentLocation = formData.submittedFrom.toString();
@@ -31,10 +31,11 @@ export async function action({ request }: Route.ActionArgs) {
 			}
 		})
 	}
+	return;
 	// just in case
-	else {
-		return;
-	}
+	// else {
+	// 	return;
+	// }
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -68,7 +69,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body className="app">
-					{children}
+				{children}
 				<ScrollRestoration />
 				<Scripts />
 			</body>
