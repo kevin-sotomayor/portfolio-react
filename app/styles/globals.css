@@ -2,7 +2,6 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	/* border: solid .1px black; */
 }
 
 @font-face {
@@ -93,7 +92,7 @@
 
 .app {
 	position: fixed;
-	background-color: rgba(0, 0, 0, 0.95);
+	background-color: rgba(20, 20, 20, 1);
 }
 
 .app-error {
@@ -102,7 +101,7 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: black;
+	background-color: rgba(20, 20, 20, 1);
 	display: flex;
 	justify-content: center;
 	align-items: center;

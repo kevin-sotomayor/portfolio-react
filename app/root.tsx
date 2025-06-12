@@ -82,7 +82,7 @@ export default function App() {
 		if (backgroundElement) {
 			backgroundElement.classList.add("loaded");
 		}
-	});
+	}, []);
 	return <Outlet />;
 }
 
