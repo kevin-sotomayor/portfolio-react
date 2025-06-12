@@ -1,15 +1,17 @@
 .app-about {
 	display: flex;
 	flex-direction: column;
+	overflow-y: scroll;
+	scrollbar-width: none;
 }
 
 .app-about__text > * {
-	font-size: 0.9rem;
+	font-size: 1rem;
 	font-weight: 400;
 	font-family: "Manrope-Regular";
 	user-select: none;
 	line-height: 1.5rem;
-	animation: left-fade-in 2s;
+	animation: left-fade-in 1.5s;
 	margin: 0.5rem 0;
 	color: var(--default-text-color);
 	text-align: justify;

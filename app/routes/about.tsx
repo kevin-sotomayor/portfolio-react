@@ -3,6 +3,16 @@ import { languageCookieUtils, } from "../utils/cookies";
 import aboutContent from "../data/about_content.json";
 
 
+
+interface DataInterface {
+	loaderData : {
+		data: string[],
+		languageCookie: {
+			language: string
+		}
+	}
+}
+
 export function meta({}: Route.MetaArgs) {
 	return [
 		{ title: "Kevin Sotomayor - About" },
@@ -10,27 +20,28 @@ export function meta({}: Route.MetaArgs) {
 	]
 }
 
-export async function loader({ request }: Route.ClientLoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
 	const cookies = await request.headers.get("Cookie");
 	const languageCookie = await languageCookieUtils.parse(cookies);
-	return languageCookie;
+	let data;
+	languageCookie.language === "fr" ? data = aboutContent.fr : data = aboutContent.en;
+	return { data, languageCookie };
 } 
 
-export default function AboutPage({ loaderData }: Route.ComponentProps) {
+// Not the default type because it was buggy for some reason Dentge
+export default function AboutPage({ loaderData }: DataInterface ) {
 	return (
 		<main className="app-about">
 			<div className="app-about__text">
-				{loaderData && loaderData.language === "fr" ? (
+				{loaderData && (
 					<>
-						<h2>{aboutContent.fr[0]}</h2>
-						<h3>{aboutContent.fr[1]}</h3>
-						<p>Vous pouvez trouver mon CV <a target="_blank" href="/public/cv_kevin_sotomayor.pdf">ici</a> si vous êtes curieux de connaître mon parcours professionnel.</p>
-					</>
-				) : (
-					<>
-						<h2>{aboutContent.en[0]}</h2>
-						<h3>{aboutContent.en[1]}</h3>
-						<p>You can find my resume <a target="_blank" href="/public/cv_kevin_sotomayor.pdf">here</a> if you are curious about my profesionnal background.</p>
+						<h2>{loaderData.data[0]}</h2>
+						<h3>{loaderData.data[1]}</h3>
+						{loaderData.languageCookie.language === "fr" ? (
+							<p>Vous pouvez trouver mon CV <a target="_blank" href="/public/cv_kevin_sotomayor.pdf">ici</a> si vous êtes curieux de connaître mon parcours professionnel.</p>
+						) : (
+							<p>You can find my resume <a target="_blank" href="/public/cv_kevin_sotomayor.pdf">here</a> if you are curious about my profesionnal background.</p>
+						)}
 					</>
 				)}
 			</div>

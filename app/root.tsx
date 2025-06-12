@@ -1,4 +1,5 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, } from "react-router";
+import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
 import "./styles/globals.css";
@@ -18,20 +19,22 @@ export async function loader({ request }: Route.LoaderArgs) {
 export async function action({ request }: Route.ActionArgs) {
 	const rawFormData = await request.formData();
 	const formData = Object.fromEntries(rawFormData);
-	const rawCookie = await request.headers.get("Cookie");
-	const currentLocation = formData.submittedFrom.toString();
 
-	switch (Object.keys(formData)[0]) {
-		case "language":
-			const cookie = await languageCookieUtils.parse(rawCookie) || {};
-			cookie.language = formData.language;
-			return redirect(currentLocation, {
-				headers: {
-					"Set-Cookie": await languageCookieUtils.serialize(cookie),
-				}
-			})
+	if (formData.language) {
+		const rawCookie = await request.headers.get("Cookie");
+		const currentLocation = formData.submittedFrom.toString();
+		const cookie = await languageCookieUtils.parse(rawCookie) || {};
+		cookie.language = formData.language;
+		return redirect(currentLocation, {
+			headers: {
+				"Set-Cookie": await languageCookieUtils.serialize(cookie),
+			}
+		})
 	}
-	return;
+	// just in case
+	else {
+		return;
+	}
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -65,7 +68,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body className="app">
-				{children}
+					{children}
 				<ScrollRestoration />
 				<Scripts />
 			</body>
@@ -73,10 +76,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	);
 }
 
-export default function App({ loaderData }: Route.ComponentProps) {
-	return (
-		<Outlet />
-	);
+export default function App() {
+	useEffect(() => {
+		const backgroundElement: HTMLDivElement | null = document.querySelector(".app-background");
+		if (backgroundElement) {
+			backgroundElement.classList.add("loaded");
+		}
+	}, []);
+	return <Outlet />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

@@ -1,7 +1,7 @@
 import type { Route, } from "./+types/projects";
 import { languageCookieUtils } from "../utils/cookies";
-import eightbeatsImg from "../assets/8beats.png";
 import topshotsImg from "../assets/topshots.png";
+import eightbeatsImg from "../assets/8beats.png";
 import purplepropositionImg from "../assets/purpleproposition.png";
 
 
@@ -55,8 +55,6 @@ const projects = {
 	]
 }
 
-
-
 export function meta({}: Route.MetaArgs) {
 	return [
 		{ title: "Kevin Sotomayor - Projects" },
@@ -64,41 +62,37 @@ export function meta({}: Route.MetaArgs) {
 	]
 }
 
+export function link({}: Route.MetaArgs) {
+	return [
+		{ href: topshotsImg, rel: "preload" },
+		{ href: eightbeatsImg, rel: "preload" },
+		{ href: purplepropositionImg, rel: "preload" },
+	]
+}
+
 export async function loader({ request }: Route.LoaderArgs) {
+	let clientData;
 	const cookies = await request.headers.get("Cookie");
-	const languageCookie = await languageCookieUtils.parse(cookies);
-	return languageCookie;
-} 
+	const languageCookie = await languageCookieUtils.parse(cookies) || {};
+	languageCookie.language === "fr" ? clientData = projects.fr : clientData = projects.en;
+	return clientData;
+}
 
 export default function ProjectsPage({ loaderData }: Route.ComponentProps) {
 	return (
 		<main className="app-projects">
 			<ul>
-				{loaderData && loaderData.language === "fr" ? (
-					projects.fr.map((project, index) => (
-						<li key={index}>
-							<a href={project.url} target="_blank">
-								<article>
-									<p>{project.company}</p>
-									<p>{project.mission}</p>
-									<img src={project.img_url} alt={project.img_alt} />
-								</article>
-							</a>
-						</li>
-					))
-				) : (
-					projects.en.map((project, index) => (
-						<li key={index}>
-							<a href={project.url} target="_blank">
-								<article>
-									<p>{project.company}</p>
-									<p>{project.mission}</p>
-									<img src={project.img_url} alt={project.img_alt} />
-								</article>
-							</a>
-						</li>
-					))
-				)}
+				{projects.fr.map((project, index: number) => (
+					<li key={index}>
+						<a href={project.url} target="_blank">
+							<article>
+								<p>{project.company}</p>
+								<p>{project.mission}</p>
+								<img src={project.img_url} alt={project.img_alt} />
+							</article>
+						</a>
+					</li>
+				))}
 			</ul>
 		</main>
 	)
