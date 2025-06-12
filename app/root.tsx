@@ -77,7 +77,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-	useEffect(() => {});
+	useEffect(() => {
+		const backgroundElement: HTMLDivElement | null = document.querySelector(".app-background");
+		if (backgroundElement) {
+			backgroundElement.style.animation = "fade-in 2.5s forwards";
+		}
+	});
 	return <Outlet />;
 }
 
