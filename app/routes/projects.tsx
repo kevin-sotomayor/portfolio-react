@@ -34,7 +34,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 			},
 			{
 				"company": "8Beats",
-				"mission": "Création de composants React",
+				"mission": "Création de composants React pour la Web Radio",
 				"url": "https://www.8beats.co",
 				"img_url": eightbeatsImg,
 				"img_alt": "Page d'accueil de l'application Web"
@@ -57,7 +57,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 			},
 			{
 				"company": "8Beats",
-				"mission": "Creation of React components",
+				"mission": "Creation of React components for the Web Radio",
 				"url": "https://www.8beats.co",
 				"img_url": eightbeatsImg,
 				"img_alt": "Homepage of the Web app"
