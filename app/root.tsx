@@ -27,8 +27,6 @@ export async function action({ request }: Route.ActionArgs) {
 		return redirectDocument(currentLocation, {
 			headers: {
 				"Set-Cookie": await languageCookieUtils.serialize(cookie),
-				"Access-Control-Allow-Methods": "GET, POST",
-				"Access-Control-Allow-Credentials": "true",
 			}
 		})
 	}

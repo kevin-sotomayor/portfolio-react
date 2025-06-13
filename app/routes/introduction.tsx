@@ -1,4 +1,5 @@
 import type { Route } from "./+types/introduction";
+import { redirectDocument, } from "react-router";
 import { languageCookieUtils, } from "../utils/cookies";
 import introductionContent from "../data/introduction_content.json"
 
