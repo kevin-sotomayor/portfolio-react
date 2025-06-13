@@ -3,7 +3,7 @@ import type { Config } from "@react-router/dev/config";
 
 
 export default {
+	presets: [vercelPreset()],
 	ssr: true,
 	prerender: true,
-	presets: [vercelPreset()],
 } satisfies Config;

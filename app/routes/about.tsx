@@ -1,5 +1,5 @@
 import type { Route } from "./+types/introduction";
-import { Form, useActionData, useFetcher, } from "react-router";
+import { Form, useActionData, useFetcher, redirect, data, redirectDocument, } from "react-router";
 import { languageCookieUtils, } from "../utils/cookies";
 import aboutContent from "../data/about_content.json";
 
@@ -29,13 +29,6 @@ export async function loader({ request }: Route.LoaderArgs) {
 	return { data, languageCookie };
 }
 
-export async function action({ request }: Route.ActionArgs) {
-	const rawFormData = await request.formData();
-	const formData = Object.fromEntries(rawFormData);
-	console.log(formData);
-	return formData
-}
-
 // Not the default type because it was buggy for some reason Dentge
 export default function AboutPage({ loaderData }: DataInterface ) {
 	let fetcher = useFetcher();
@@ -54,10 +47,6 @@ export default function AboutPage({ loaderData }: DataInterface ) {
 						)}
 					</>
 				)}
-				<fetcher.Form method="post">
-					<input type="text" name="test"/>
-					<button type="submit">Send</button>
-				</fetcher.Form>
 			</div>
 		</main>
 	)

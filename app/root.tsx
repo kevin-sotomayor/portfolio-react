@@ -1,4 +1,4 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, isRouteErrorResponse, } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirectDocument, useLoaderData, isRouteErrorResponse, } from "react-router";
 import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
@@ -7,7 +7,7 @@ import "./styles/globals.css";
 
 
 
-export async function loader({ request }: Route.LoaderArgs) {
+export async function loader({ request, }: Route.LoaderArgs) {
 	const cookies = request.headers.get("Cookie");
 	if (!cookies) {
 		return null;
@@ -16,26 +16,23 @@ export async function loader({ request }: Route.LoaderArgs) {
 	return languageCookie;
 }
 
-export async function action({ request }: Route.ActionArgs) {
-	const rawFormData = await request.formData();
-	const formData = Object.fromEntries(rawFormData);
-	if (formData.language) {
-		const rawCookie = await request.headers.get("Cookie");
-		const currentLocation = formData.submittedFrom.toString();
-		const cookie = await languageCookieUtils.parse(rawCookie) || {};
-		cookie.language = formData.language;
-		return redirect(currentLocation, {
-			headers: {
-				"Set-Cookie": await languageCookieUtils.serialize(cookie),
-			}
-		})
-	}
-	return;
-	// just in case
-	// else {
-	// 	return;
-	// }
-}
+// export async function action({ request }: Route.ActionArgs) {
+// 	console.log(request);
+// 	const rawFormData = await request.formData();
+// 	const formData = Object.fromEntries(rawFormData);
+// 	if (formData.language) {
+// 		const rawCookie = await request.headers.get("Cookie");
+// 		const currentLocation = formData.submittedFrom.toString();
+// 		const cookie = await languageCookieUtils.parse(rawCookie) || {};
+// 		cookie.language = formData.language;
+// 		return redirectDocument(currentLocation, {
+// 			headers: {
+// 				"Set-Cookie": await languageCookieUtils.serialize(cookie),
+// 			}
+// 		})
+// 	}
+// 	return;
+// }
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	const loaderData = useLoaderData();

@@ -1,10 +1,7 @@
 import { Link, useLocation, } from "react-router";
+import type { LanguagePropInterface } from "../utils/types";
 
 
-
-interface LanguageInterface {
-	languageProp: "en" | "fr"
-}
 
 const routes = {
 	fr: [
@@ -21,7 +18,7 @@ const routes = {
 	]
 }
 
-export default function NavComponent({ languageProp }: LanguageInterface) {
+export default function NavComponent({ languageProp }: LanguagePropInterface) {
 	const currentLocation = useLocation();
 	return (
 		<nav className="app-nav">

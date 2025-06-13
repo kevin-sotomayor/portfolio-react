@@ -1,4 +1,5 @@
 import type { Route } from "./+types/introduction";
+import { redirectDocument, } from "react-router";
 import { languageCookieUtils, } from "../utils/cookies";
 import introductionContent from "../data/introduction_content.json"
 
@@ -23,7 +24,7 @@ export async function loader({ request }: Route.ClientLoaderArgs) {
 	let data;
 	languageCookie.language === "fr" ? data = introductionContent.fr : data = introductionContent.en;
 	return data;
-} 
+}
 
 export default function HomePage({ loaderData }: Route.ComponentProps) {
 	return (

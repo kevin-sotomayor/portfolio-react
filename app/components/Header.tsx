@@ -1,8 +1,8 @@
 import type { Route } from "./+types/Layout";
-import type { LanguageInterface } from "../utils/types";
+import type { LanguagePropInterface } from "../utils/types";
 
 
-export default function HeaderComponent({ languageProp }: LanguageInterface) {
+export default function HeaderComponent({ languageProp }: LanguagePropInterface) {
 	return (
 		<header className="app-header">
 			<span className="app-header__title">Kevin Sotomayor</span>
