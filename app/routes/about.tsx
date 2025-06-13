@@ -47,10 +47,6 @@ export default function AboutPage({ loaderData }: DataInterface ) {
 						)}
 					</>
 				)}
-				<fetcher.Form method="post">
-					<input type="text" name="test"/>
-					<button type="submit">Send</button>
-				</fetcher.Form>
 			</div>
 		</main>
 	)
