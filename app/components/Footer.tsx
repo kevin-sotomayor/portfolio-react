@@ -14,7 +14,7 @@ export default function FooterComponent({ languageProp }: LanguagePropInterface)
 					<input type="hidden" name="submittedFrom" value={currentLocation.pathname} />
 				</Form>
 			) : (
-				<Form className="app-footer__language" method="post" navigate={false} action="/">
+				<Form className="app-footer__language" method="POST" navigate={true} action="/">
 					<button type="submit" name="language" className="active" value="en" >EN</button>
 					<button type="submit" name="language" value="fr" >FR</button>
 					<input type="hidden" name="submittedFrom" value={currentLocation.pathname} />

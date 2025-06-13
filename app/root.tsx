@@ -17,20 +17,22 @@ export async function loader({ request, }: Route.LoaderArgs) {
 }
 
 export async function action({ request }: Route.ActionArgs) {
+	console.log(request);
 	const rawFormData = await request.formData();
 	const formData = Object.fromEntries(rawFormData);
-	if (formData.language) {
-		const rawCookie = await request.headers.get("Cookie");
-		const currentLocation = formData.submittedFrom.toString();
-		const cookie = await languageCookieUtils.parse(rawCookie) || {};
-		cookie.language = formData.language;
-		return redirectDocument(currentLocation, {
-			headers: {
-				"Set-Cookie": await languageCookieUtils.serialize(cookie),
-			}
-		})
-	}
 	return;
+	// if (formData.language) {
+	// 	const rawCookie = await request.headers.get("Cookie");
+	// 	const currentLocation = formData.submittedFrom.toString();
+	// 	const cookie = await languageCookieUtils.parse(rawCookie) || {};
+	// 	cookie.language = formData.language;
+	// 	return redirectDocument(currentLocation, {
+	// 		headers: {
+	// 			"Set-Cookie": await languageCookieUtils.serialize(cookie),
+	// 		}
+	// 	})
+	// }
+	// return;
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {

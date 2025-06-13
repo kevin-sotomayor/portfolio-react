@@ -24,7 +24,7 @@ export async function loader({ request }: Route.ClientLoaderArgs) {
 	let data;
 	languageCookie.language === "fr" ? data = introductionContent.fr : data = introductionContent.en;
 	return data;
-} 
+}
 
 export default function HomePage({ loaderData }: Route.ComponentProps) {
 	return (
