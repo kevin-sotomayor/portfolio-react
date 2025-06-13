@@ -1,4 +1,3 @@
-import type { Route, } from "./+types/Layout";
 import { Form, useLocation, } from "react-router";
 import type { LanguagePropInterface } from "../utils/types";
 
@@ -6,7 +5,6 @@ import type { LanguagePropInterface } from "../utils/types";
 
 export default function FooterComponent({ languageProp }: LanguagePropInterface) {
 	const currentLocation = useLocation();
-	console.log(languageProp);
 	return (
 		<footer className="app-footer">
 			{languageProp === "fr" ? (

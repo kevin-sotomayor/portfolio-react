@@ -1,4 +1,4 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData, isRouteErrorResponse, } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirectDocument, useLoaderData, isRouteErrorResponse, } from "react-router";
 import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
@@ -24,7 +24,7 @@ export async function action({ request }: Route.ActionArgs) {
 		const currentLocation = formData.submittedFrom.toString();
 		const cookie = await languageCookieUtils.parse(rawCookie) || {};
 		cookie.language = formData.language;
-		return redirect(currentLocation, {
+		return redirectDocument(currentLocation, {
 			headers: {
 				"Set-Cookie": await languageCookieUtils.serialize(cookie),
 			}
