@@ -16,29 +16,33 @@ export async function loader({ request, }: Route.LoaderArgs) {
 	return languageCookie;
 }
 
-// export async function action({ request }: Route.ActionArgs) {
-// 	console.log(request);
-// 	const rawFormData = await request.formData();
-// 	const formData = Object.fromEntries(rawFormData);
-// 	if (formData.language) {
-// 		const rawCookie = await request.headers.get("Cookie");
-// 		const currentLocation = formData.submittedFrom.toString();
-// 		const cookie = await languageCookieUtils.parse(rawCookie) || {};
-// 		cookie.language = formData.language;
-// 		return redirectDocument(currentLocation, {
-// 			headers: {
-// 				"Set-Cookie": await languageCookieUtils.serialize(cookie),
-// 			}
-// 		})
-// 	}
-// 	return;
-// }
+export async function action({ request }: Route.ActionArgs) {
+	try {
+		const rawFormData = await request.formData();
+		const formData = Object.fromEntries(rawFormData);
+		console.log(formData);
+		if (formData.language) {
+			const rawCookie = await request.headers.get("Cookie");
+			const currentLocation = formData.submittedFrom.toString();
+			const cookie = await languageCookieUtils.parse(rawCookie) || {};
+			cookie.language = formData.language;
+			return redirectDocument(currentLocation, {
+				headers: {
+						"Set-Cookie": await languageCookieUtils.serialize(cookie),
+				}
+			})
+		}
+	} catch(error) {
+		console.error(error);
+		return;
+	}
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	const loaderData = useLoaderData();
-	if (!loaderData || loaderData.language === "en") {
+	if (loaderData && loaderData.language === "fr") {
 		return (
-			<html lang="en">
+			<html lang="fr">
 				<head>
 					<meta charSet="utf-8" />
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -52,11 +56,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 					<Scripts />
 				</body>
 			</html>
-		);
+		); 
 	}
-
 	return (
-		<html lang="fr">
+		<html lang="en">
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
