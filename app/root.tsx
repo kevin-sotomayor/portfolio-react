@@ -20,7 +20,6 @@ export async function action({ request }: Route.ActionArgs) {
 	try {
 		const rawFormData = await request.formData();
 		const formData = Object.fromEntries(rawFormData);
-		console.log(formData);
 		if (formData.language) {
 			const rawCookie = await request.headers.get("Cookie");
 			const currentLocation = formData.submittedFrom.toString();
@@ -39,8 +38,6 @@ export async function action({ request }: Route.ActionArgs) {
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	const loaderData = useLoaderData();
-	const actionData = useActionData();
-	console.log(actionData);
 	if (loaderData && loaderData.language === "fr") {
 		return (
 			<html lang="fr">
