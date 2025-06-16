@@ -17,38 +17,29 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 export async function action({ request }: Route.ActionArgs) {
-	// try {
-	// 	const rawFormData = await request.formData();
-	// 	const formData = Object.fromEntries(rawFormData);
-	// 	console.log(formData)
-	// 	if (formData.language) {
-	// 		const rawCookie = await request.headers.get("Cookie");
-	// 		const currentLocation = formData.submittedFrom.toString();
-	// 		const cookie = await languageCookieUtils.parse(rawCookie) || {};
-	// 		cookie.language = formData.language;
-	// 		return redirectDocument("/", {
-	// 			headers: {
-	// 				"Set-Cookie": await languageCookieUtils.serialize(cookie),
-	// 			},
-	// 		})
-	// 	}
-	// } catch(error) {
-	// 	console.error(error);
-	// 	return error;
-	// }
 	try {
 		const formData = await request.formData();
 		const language = formData.get("language");
-		const rawCookie = await request.headers.get("Cookie");
+		const submittedFromValue = formData.get("submittedFrom");
+		const submittedFrom = submittedFromValue ? submittedFromValue.toString() : "/";
+		const rawCookie = request.headers.get("Cookie");
 		const cookie = await languageCookieUtils.parse(rawCookie) || {};
 		cookie.language = language;
-		return redirectDocument("/", {
+		if (!submittedFrom) {
+			return redirectDocument("/", {
+				headers: {
+					"Set-Cookie": await languageCookieUtils.serialize(cookie),
+				},
+			})
+		}
+		return redirectDocument(submittedFrom, {
 			headers: {
 				"Set-Cookie": await languageCookieUtils.serialize(cookie),
 			},
-		})
+		});
 	} catch (error) {
 		console.error(error);
+		return redirectDocument("/");
 	}
 }
 
