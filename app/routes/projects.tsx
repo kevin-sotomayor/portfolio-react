@@ -13,11 +13,11 @@ export function meta({}: Route.MetaArgs) {
 	]
 }
 
-export function headers(_: Route.HeadersArgs) {
-  return {
-	'Cache-Control': 's-maxage=1, stale-while-revalidate=59',
-  };
-}
+// export function headers(_: Route.HeadersArgs) {
+//   return {
+// 	'Cache-Control': 's-maxage=1, stale-while-revalidate=59',
+//   };
+// }
 
 export function link({}: Route.MetaArgs) {
 	return [
