@@ -76,7 +76,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	);
 }
 
-export default function App() {
+export function App() {
 	useEffect(() => {
 		const backgroundElement: HTMLDivElement | null = document.querySelector(".app-background");
 		if (backgroundElement) {
