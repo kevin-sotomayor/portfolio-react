@@ -18,25 +18,19 @@ export async function loader({ request }: Route.LoaderArgs) {
 
 export async function action({ request }: Route.ActionArgs) {
 	try {
-		const formData = await request.formData();
-		const language = formData.get("language");
-		const submittedFromValue = formData.get("submittedFrom");
-		const submittedFrom = submittedFromValue ? submittedFromValue.toString() : "/";
-		const rawCookie = request.headers.get("Cookie");
-		const cookie = await languageCookieUtils.parse(rawCookie) || {};
-		cookie.language = language;
-		if (!submittedFrom) {
-			return redirectDocument("/", {
+		const rawFormData = await request.formData();
+		const formData = await Object.fromEntries(rawFormData);
+		const headersCookie = await request.headers.get("Cookie");
+		const cookie = await languageCookieUtils.parse(headersCookie);
+		cookie.language = formData.language;
+		return redirectDocument(
+			formData.submittedFrom ? formData.submittedFrom.toString() : "/",
+			{
 				headers: {
 					"Set-Cookie": await languageCookieUtils.serialize(cookie),
-				},
-			})
-		}
-		return redirectDocument(submittedFrom, {
-			headers: {
-				"Set-Cookie": await languageCookieUtils.serialize(cookie),
-			},
-		});
+				}
+			}
+		)
 	} catch (error) {
 		console.error(error);
 		return redirectDocument("/");
