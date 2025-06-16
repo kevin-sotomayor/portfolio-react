@@ -56,10 +56,10 @@ export async function loader({ request }: Route.LoaderArgs) {
 		en: [
 			{
 				"company": "Topshots",
-				"mission": "Total redesign of the company Website",
+				"mission": "Total redesign of the company Website in progress",
 				"url": "https://www.topshots.fr",
 				"img_url": topshotsImg,
-				"img_alt": "Homepage of the current version of the Website in progress"
+				"img_alt": "Homepage of the current version of the Website"
 			},
 			{
 				"company": "8Beats",

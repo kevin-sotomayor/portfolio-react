@@ -1,10 +1,10 @@
 import { createCookie, } from "react-router";
 
 
-export const languageCookieUtils = createCookie("lang", {
-	path: "/",
-	sameSite: "strict",
+export const languageCookieUtils = createCookie("language", {
 	httpOnly: true,
-	maxAge: 60 * 60 * 24 * 365, // 1 year
 	secure: true,
+	sameSite: "strict",
+	path: "/",
+	maxAge: 60 * 60 * 24 * 365, // 1 year
 });
