@@ -1,4 +1,4 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirectDocument, useLoaderData, isRouteErrorResponse, } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirectDocument, useLoaderData, isRouteErrorResponse, useActionData} from "react-router";
 import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
@@ -33,13 +33,14 @@ export async function action({ request }: Route.ActionArgs) {
 			})
 		}
 	} catch(error) {
-		console.error(error);
-		return;
+		return error;
 	}
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	const loaderData = useLoaderData();
+	const actionData = useActionData();
+	console.log(actionData);
 	if (loaderData && loaderData.language === "fr") {
 		return (
 			<html lang="fr">
