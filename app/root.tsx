@@ -7,7 +7,7 @@ import "./styles/globals.css";
 
 
 
-export async function loader({ request, }: Route.LoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
 	const cookies = request.headers.get("Cookie");
 	if (!cookies) {
 		return null;
@@ -16,25 +16,39 @@ export async function loader({ request, }: Route.LoaderArgs) {
 	return languageCookie;
 }
 
-export async function clientAction({ request }: Route.ClientActionArgs) {
+export async function action({ request }: Route.ActionArgs) {
+	// try {
+	// 	const rawFormData = await request.formData();
+	// 	const formData = Object.fromEntries(rawFormData);
+	// 	console.log(formData)
+	// 	if (formData.language) {
+	// 		const rawCookie = await request.headers.get("Cookie");
+	// 		const currentLocation = formData.submittedFrom.toString();
+	// 		const cookie = await languageCookieUtils.parse(rawCookie) || {};
+	// 		cookie.language = formData.language;
+	// 		return redirectDocument("/", {
+	// 			headers: {
+	// 				"Set-Cookie": await languageCookieUtils.serialize(cookie),
+	// 			},
+	// 		})
+	// 	}
+	// } catch(error) {
+	// 	console.error(error);
+	// 	return error;
+	// }
 	try {
-		const rawFormData = await request.formData();
-		const formData = Object.fromEntries(rawFormData);
-		console.log(formData);
-		if (formData.language) {
-			const rawCookie = await request.headers.get("Cookie");
-			const currentLocation = formData.submittedFrom.toString();
-			const cookie = await languageCookieUtils.parse(rawCookie) || {};
-			cookie.language = formData.language;
-			return redirectDocument("/", {
-				headers: {
-					"Set-Cookie": await languageCookieUtils.serialize(cookie),
-				},
-			})
-		}
-	} catch(error) {
+		const formData = await request.formData();
+		const language = formData.get("language");
+		const rawCookie = await request.headers.get("Cookie");
+		const cookie = await languageCookieUtils.parse(rawCookie) || {};
+		cookie.language = language;
+		return redirectDocument("/", {
+			headers: {
+				"Set-Cookie": await languageCookieUtils.serialize(cookie),
+			},
+		})
+	} catch (error) {
 		console.error(error);
-		return error;
 	}
 }
 
@@ -76,7 +90,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	);
 }
 
-export function App() {
+export default function App() {
 	useEffect(() => {
 		const backgroundElement: HTMLDivElement | null = document.querySelector(".app-background");
 		if (backgroundElement) {
