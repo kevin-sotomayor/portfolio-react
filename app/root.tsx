@@ -1,4 +1,4 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirectDocument, useLoaderData, isRouteErrorResponse, useActionData} from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirectDocument, useLoaderData, isRouteErrorResponse, } from "react-router";
 import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
 import favicon from "../public/favicon.ico";
@@ -16,25 +16,27 @@ export async function loader({ request, }: Route.LoaderArgs) {
 	return languageCookie;
 }
 
-export async function action({ request }: Route.ActionArgs) {
-	try {
-		const rawFormData = await request.formData();
-		const formData = Object.fromEntries(rawFormData);
-		if (formData.language) {
-			const rawCookie = await request.headers.get("Cookie");
-			const currentLocation = formData.submittedFrom.toString();
-			const cookie = await languageCookieUtils.parse(rawCookie) || {};
-			cookie.language = formData.language;
-			return redirectDocument(currentLocation, {
-				headers: {
-						"Set-Cookie": await languageCookieUtils.serialize(cookie),
-				}
-			})
-		}
-	} catch(error) {
-		return error;
-	}
-}
+// export async function clientAction({ request }: Route.ClientActionArgs) {
+// 	try {
+// 		const rawFormData = await request.formData();
+// 		const formData = Object.fromEntries(rawFormData);
+// 		console.log(formData);
+// 		if (formData.language) {
+// 			const rawCookie = await request.headers.get("Cookie");
+// 			const currentLocation = formData.submittedFrom.toString();
+// 			const cookie = await languageCookieUtils.parse(rawCookie) || {};
+// 			cookie.language = formData.language;
+// 			// return redirectDocument(currentLocation, {
+// 			// 	headers: {
+// 			// 			"Set-Cookie": await languageCookieUtils.serialize(cookie),
+// 			// 	}
+// 			// })
+// 		}
+// 	} catch(error) {
+// 		console.error(error);
+// 		return error;
+// 	}
+// }
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	const loaderData = useLoaderData();

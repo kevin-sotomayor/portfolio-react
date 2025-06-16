@@ -1,5 +1,4 @@
 import type { Route } from "./+types/introduction";
-import { Form, useActionData, useFetcher, redirect, data, redirectDocument, } from "react-router";
 import { languageCookieUtils, } from "../utils/cookies";
 import aboutContent from "../data/about_content.json";
 
@@ -31,7 +30,6 @@ export async function loader({ request }: Route.LoaderArgs) {
 
 // Not the default type because it was buggy for some reason Dentge
 export default function AboutPage({ loaderData }: DataInterface ) {
-	let fetcher = useFetcher();
 	return (
 		<main className="app-about">
 			<div className="app-about__text">
