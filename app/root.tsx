@@ -21,16 +21,13 @@ export async function action({ request }: Route.ActionArgs) {
 		const rawFormData = await request.formData();
 		const formData = await Object.fromEntries(rawFormData);
 		const headersCookie = await request.headers.get("Cookie");
-		const cookie = await languageCookieUtils.parse(headersCookie);
+		const cookie = await languageCookieUtils.parse(headersCookie) || {};
 		cookie.language = formData.language;
-		return redirectDocument(
-			formData.submittedFrom ? formData.submittedFrom.toString() : "/",
-			{
-				headers: {
-					"Set-Cookie": await languageCookieUtils.serialize(cookie),
-				}
-			}
-		)
+		return redirectDocument(formData.submittedFrom, {
+			headers: {
+				"Set-Cookie": await languageCookieUtils.serialize(cookie),
+			},
+		});
 	} catch (error) {
 		console.error(error);
 		return redirectDocument("/");
