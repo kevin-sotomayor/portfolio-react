@@ -7,7 +7,7 @@ export default function FooterComponent({ languageProp }: LanguagePropInterface)
 	const currentLocation = useLocation();
 	return (
 		<footer className="app-footer">
-			{/* {languageProp === "fr" ? (
+			{languageProp === "fr" ? (
 				<Form className="app-footer__language" method="post">
 					<button type="submit" name="language" value="en" >EN</button>
 					<button type="submit" name="language" className="active" value="fr" >FR</button>
@@ -19,7 +19,7 @@ export default function FooterComponent({ languageProp }: LanguagePropInterface)
 					<button type="submit" name="language" value="fr" >FR</button>
 					<input type="hidden" name="submittedFrom" value={currentLocation.pathname} />
 				</Form>
-			)} */}
+			)}
 		</footer>
 	)
 }
