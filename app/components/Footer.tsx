@@ -20,6 +20,11 @@ export default function FooterComponent() {
 					<input type="hidden" name="submittedFrom" value={currentLocation.pathname} />
 				</Form>
 			)} */}
+				<Form className="app-footer__language" method="post" reloadDocument>
+					<button type="submit" name="language" value="en" >EN</button>
+					<button type="submit" name="language" value="fr" >FR</button>
+					<input type="hidden" name="submittedFrom" value={currentLocation.pathname} />
+				</Form>
 		</footer>
 	)
 }

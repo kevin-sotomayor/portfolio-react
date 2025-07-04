@@ -1,8 +1,12 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirectDocument, useLoaderData, isRouteErrorResponse, } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, isRouteErrorResponse, useNavigate, } from "react-router";
 import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
 import { languageCookieUtils, } from "./utils/cookies";
-
+import "./styles/globals.css";
+import BackgroundComponent from "./components/Background";
+import HeaderComponent from "./components/Header";
+import FooterComponent from "./components/Footer";
+import NavComponent from "./components/Nav";
 
 
 
@@ -24,8 +28,34 @@ import { languageCookieUtils, } from "./utils/cookies";
 // 	}
 // }
 
+
+export async function loader({ request }: Route.LoaderArgs) {
+	const cookies = request.headers.get("Cookie");
+	// we check the value of the cookie and return it else
+	return "en";
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
-	return children;
+	const language = useLoaderData();
+	return (
+		<html lang="en">
+			<head>
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<Links />
+				<Meta />
+			</head>
+			<body className="app">
+				<BackgroundComponent />
+				<HeaderComponent />
+				<NavComponent />
+				{children}
+				<FooterComponent />
+				<ScrollRestoration />
+				<Scripts />
+			</body>
+		</html>
+	)
 }
 
 export default function App() {
@@ -37,6 +67,8 @@ export default function App() {
 	}, []);
 	return <Outlet />;
 }
+
+
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 	let message = "Oops!";
@@ -56,7 +88,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 			<div className="app-error__content">
 				<h1>{message}</h1>
 				<h2>{details}</h2>
-				<a href="/">Go back home</a>
+				{/* <a href="/">Go back home</a> */}
 			</div>
 		</main>
 	)

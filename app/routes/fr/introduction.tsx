@@ -1,6 +1,6 @@
-import type { Route } from "./+types/introduction";
-import introductionContent from "../data/introduction_content.json";
-import "./../styles/introduction.css";
+import type { Route } from "../+types/introduction";
+import introductionContent from "../../data/introduction_content.json";
+import "../styles/introduction.css";
 
 
 
