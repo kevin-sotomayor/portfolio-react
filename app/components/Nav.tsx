@@ -18,12 +18,12 @@ const routes = {
 	]
 }
 
-export default function NavComponent({ languageProp }: LanguagePropInterface) {
+export default function NavComponent() {
 	const currentLocation = useLocation();
 	return (
 		<nav className="app-nav">
 			<ul className="app-nav__list">
-				{languageProp === "fr" ? (
+				{/* {languageProp === "fr" ? (
 					routes.fr.map((route, index) => (
 						currentLocation.pathname === route.path ? (
 							<li key={index}><Link to={route.path} className="active-route" viewTransition>{route.label}</Link></li>
@@ -39,7 +39,7 @@ export default function NavComponent({ languageProp }: LanguagePropInterface) {
 							<li key={index}><Link to={route.path}>{route.label}</Link></li>
 						)
 					))
-				)}
+				)} */}
 			</ul>
 		</nav>
 	)

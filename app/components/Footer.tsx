@@ -3,7 +3,7 @@ import type { LanguagePropInterface } from "../utils/types";
 
 
 
-export default function FooterComponent({ languageProp }: LanguagePropInterface) {
+export default function FooterComponent() {
 	const currentLocation = useLocation();
 	return (
 		<footer className="app-footer">

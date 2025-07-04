@@ -1,6 +1,7 @@
 import type { Route } from "./+types/introduction";
 import { languageCookieUtils, } from "../utils/cookies";
-import introductionContent from "../data/introduction_content.json"
+import introductionContent from "../data/introduction_content.json";
+import "../styles/introduction.css";
 
 
 

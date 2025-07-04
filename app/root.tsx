@@ -1,75 +1,31 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirectDocument, useLoaderData, isRouteErrorResponse, } from "react-router";
 import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
-import favicon from "../public/favicon.ico";
 import { languageCookieUtils, } from "./utils/cookies";
-import "./styles/globals.css";
 
 
 
-export async function loader({ request }: Route.LoaderArgs) {
-	const cookies = request.headers.get("Cookie");
-	if (!cookies) {
-		return null;
-	}
-	const languageCookie = await languageCookieUtils.parse(cookies);
-	return languageCookie;
-}
 
-export async function action({ request }: Route.ActionArgs) {
-	try {
-		const rawFormData = await request.formData();
-		const formData = await Object.fromEntries(rawFormData);
-		const headersCookie = await request.headers.get("Cookie");
-		const cookie = await languageCookieUtils.parse(headersCookie) || {};
-		cookie.language = formData.language;
-		return redirectDocument(formData.submittedFrom, {
-			headers: {
-				"Set-Cookie": await languageCookieUtils.serialize(cookie),
-			},
-		});
-	} catch (error) {
-		console.error(error);
-		return redirectDocument("/");
-	}
-}
+// export async function action({ request }: Route.ActionArgs) {
+// 	try {
+// 		const rawFormData = await request.formData();
+// 		const formData = await Object.fromEntries(rawFormData);
+// 		const headersCookie = await request.headers.get("Cookie");
+// 		const cookie = await languageCookieUtils.parse(headersCookie) || {};
+// 		cookie.language = formData.language;
+// 		return redirectDocument(formData.submittedFrom, {
+// 			headers: {
+// 				"Set-Cookie": await languageCookieUtils.serialize(cookie),
+// 			},
+// 		});
+// 	} catch (error) {
+// 		console.error(error);
+// 		return redirectDocument("/");
+// 	}
+// }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-	const loaderData = useLoaderData();
-	if (loaderData && loaderData.language === "fr") {
-		return (
-			<html lang="fr">
-				<head>
-					<meta charSet="utf-8" />
-					<meta name="viewport" content="width=device-width, initial-scale=1" />
-					<link rel="favicon" href={favicon} />
-					<Meta />
-					<Links />
-				</head>
-				<body className="app">
-					{children}
-					<ScrollRestoration />
-					<Scripts />
-				</body>
-			</html>
-		); 
-	}
-	return (
-		<html lang="en">
-			<head>
-				<meta charSet="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="favicon" href={favicon} />
-				<Meta />
-				<Links />
-			</head>
-			<body className="app">
-				{children}
-				<ScrollRestoration />
-				<Scripts />
-			</body>
-		</html>
-	);
+	return children;
 }
 
 export default function App() {
