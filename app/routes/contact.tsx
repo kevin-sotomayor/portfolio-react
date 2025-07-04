@@ -1,6 +1,7 @@
 import type { Route } from "./+types/contact";
 import { languageCookieUtils, } from "../utils/cookies";
 import pp from "../assets/pp.png";
+import "../styles/contact.css";
 
 
 

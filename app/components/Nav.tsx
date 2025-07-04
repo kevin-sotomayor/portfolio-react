@@ -40,6 +40,15 @@ export default function NavComponent() {
 						)
 					))
 				)} */}
+				{
+					routes.en.map((route, index) => (
+						currentLocation.pathname === route.path ? (
+							<li key={index}><Link to={route.path} className="active-route" viewTransition>{route.label}</Link></li>
+						) : (
+							<li key={index}><Link to={route.path}>{route.label}</Link></li>
+						)
+					))
+				}
 			</ul>
 		</nav>
 	)

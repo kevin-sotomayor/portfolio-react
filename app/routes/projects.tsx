@@ -3,6 +3,7 @@ import { languageCookieUtils } from "../utils/cookies";
 import topshotsImg from "../assets/topshots.png";
 import eightbeatsImg from "../assets/8beats.png";
 import purplepropositionImg from "../assets/purpleproposition.png";
+import "../styles/projects.css";
 
 
 
