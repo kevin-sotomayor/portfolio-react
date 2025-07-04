@@ -38,7 +38,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 export function Layout({ children }: { children: React.ReactNode }) {
 	const language = useLoaderData();
 	return (
-		<html lang="en">
+		<html lang={language}>
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,7 +47,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			</head>
 			<body className="app">
 				<BackgroundComponent />
-				<HeaderComponent />
+				<HeaderComponent language={language} />
 				<NavComponent />
 				{children}
 				<FooterComponent />
@@ -88,7 +88,6 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 			<div className="app-error__content">
 				<h1>{message}</h1>
 				<h2>{details}</h2>
-				{/* <a href="/">Go back home</a> */}
 			</div>
 		</main>
 	)

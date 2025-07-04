@@ -9,4 +9,7 @@ export default [
 	// 	route("/contact", "./routes/contact.tsx"),
 	// ])
 	index("./routes/introduction.tsx"),
+	route("/about", "./routes/about.tsx"),
+	route("/projects", "./routes/projects.tsx"),
+	route("/contact", "./routes/contact.tsx"),
 ] satisfies RouteConfig;
