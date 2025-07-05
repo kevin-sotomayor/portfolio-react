@@ -1,5 +1,4 @@
 import type { Route } from "./+types/introduction";
-import introductionContent from "../data/introduction_content.json";
 import "./../styles/introduction.css";
 
 
@@ -22,10 +21,10 @@ export default function HomePage({ loaderData }: Route.ComponentProps) {
 		<main className="app-introduction">
 			<div className="app-introduction__text">
 				<h1>
-					Born in 1994 and based in Lyon, France, I am a curious programmer, constantly on the lookout for new ideas to create a more aesthetic, enjoyable and high-performance Web experience
+					Né en 1994 et basé à Lyon, France, je suis un programmeur curieux, constamment à la recherche de nouvelles idées pour créer des expériences Web esthétiques, agréables et performantes.
 				</h1>
 				<h2>
-					I specialize in Front-End development with JavaScript, TypeScript, React and its framework React Router v7.
+					Je suis spécialisé en développement Front-End avec JavaScript, TypeScript, React et son framework React Router v7.
 				</h2>
 			</div>
 		</main>

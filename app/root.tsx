@@ -10,6 +10,10 @@ import NavComponent from "./components/Nav";
 
 
 
+export interface LanguagePropInterface {
+	language: string,
+}
+
 // export async function action({ request }: Route.ActionArgs) {
 // 	try {
 // 		const rawFormData = await request.formData();
@@ -32,7 +36,7 @@ import NavComponent from "./components/Nav";
 export async function loader({ request }: Route.LoaderArgs) {
 	const cookies = request.headers.get("Cookie");
 	// we check the value of the cookie and return it else
-	return "en";
+	return "fr";
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -48,9 +52,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			<body className="app">
 				<BackgroundComponent />
 				<HeaderComponent language={language} />
-				<NavComponent />
+				<NavComponent language={language}/>
 				{children}
-				<FooterComponent />
+				<FooterComponent language={language}/>
 				<ScrollRestoration />
 				<Scripts />
 			</body>

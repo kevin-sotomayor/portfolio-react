@@ -1,5 +1,5 @@
 import { Link, useLocation, } from "react-router";
-import type { LanguagePropInterface } from "../utils/types";
+import type { LanguagePropInterface } from "../root";
 
 
 
@@ -18,12 +18,13 @@ const routes = {
 	]
 }
 
-export default function NavComponent() {
+export default function NavComponent(language: LanguagePropInterface) {
+	const lang = language.language;
 	const currentLocation = useLocation();
 	return (
 		<nav className="app-nav">
 			<ul className="app-nav__list">
-				{/* {languageProp === "fr" ? (
+				{lang === "fr" ? (
 					routes.fr.map((route, index) => (
 						currentLocation.pathname === route.path ? (
 							<li key={index}><Link to={route.path} className="active-route" viewTransition>{route.label}</Link></li>
@@ -39,16 +40,7 @@ export default function NavComponent() {
 							<li key={index}><Link to={route.path}>{route.label}</Link></li>
 						)
 					))
-				)} */}
-				{
-					routes.en.map((route, index) => (
-						currentLocation.pathname === route.path ? (
-							<li key={index}><Link to={route.path} className="active-route" viewTransition>{route.label}</Link></li>
-						) : (
-							<li key={index}><Link to={route.path}>{route.label}</Link></li>
-						)
-					))
-				}
+				)}
 			</ul>
 		</nav>
 	)

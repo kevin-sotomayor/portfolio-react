@@ -5,15 +5,6 @@ import "../styles/about.css";
 
 
 
-interface DataInterface {
-	loaderData : {
-		data: string[],
-		languageCookie: {
-			language: string
-		}
-	}
-}
-
 export function meta({}: Route.MetaArgs) {
 	return [
 		{ title: "Kevin Sotomayor - About" },
@@ -27,31 +18,23 @@ export function meta({}: Route.MetaArgs) {
 //   };
 // }
 
-export async function loader({ request }: Route.LoaderArgs) {
-	const cookies = await request.headers.get("Cookie");
-	const languageCookie = await languageCookieUtils.parse(cookies) || {};
-	let data;
-	languageCookie.language === "fr" ? data = aboutContent.fr : data = aboutContent.en;
-	return { data, languageCookie };
-}
-
 // Not the default type because it was buggy for some reason Dentge
-export default function AboutPage({ loaderData }: DataInterface ) {
+export default function AboutPage() {
 	return (
 		<main className="app-about">
 			<div className="app-about__text">
-				{loaderData && (
-					<>
-						<p>{loaderData.data[0]}</p>
-						<p>{loaderData.data[1]}</p>
-						<p>{loaderData.data[2]}</p>
-						{loaderData.languageCookie.language === "fr" ? (
-							<p>Vous pouvez trouver mon CV <a target="_blank" href="/cv_kevin_sotomayor.pdf">ici</a> si vous êtes curieux de connaître mon parcours professionnel.</p>
-						) : (
-							<p>You can find my resume <a target="_blank" href="/cv_kevin_sotomayor.pdf">here</a> if you are curious about my profesionnal background.</p>
-						)}
-					</>
-				)}
+				<p>
+					Définitivement reconverti professionnellement en 2022, j'ai toujours un été un grand passionné d'informatique. Plus jeune, cet intérêt s'exprimait à travers la création de sites Web statiques personnels et de projets divers en Python, mais il s'est rapidement transformé en une addiction à l'apprentissage de nouvelles compétences, qu'elles soient liées au Web, aux systèmes d'exploitation, ou à des domaines connexes tel que le graphisme 3D ou encore les architectures de réseaux.
+				</p>
+				<p>
+					Je suis spécialisé en développement Front-End mais je suis également capable de réaliser des projets complets avec Node et son framework Express pour le Back-End, ainsi que PostgreSQL pour le traitement de données.
+				</p>
+				<p>
+					Je suis ouvert à toute opportunité professionnelle, alors n'hésitez pas à me contacter si une collaboration vous intéresse.
+				</p>
+				<p>
+					Vous pouvez trouver mon CV <a target="_blank" href="/cv_kevin_sotomayor.pdf">ici</a> si vous êtes curieux de connaître mon parcours professionnel.
+				</p>
 			</div>
 		</main>
 	)

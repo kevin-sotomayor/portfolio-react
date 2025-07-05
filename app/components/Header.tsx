@@ -1,10 +1,7 @@
 import type { Route } from "../+types/root";
+import type { LanguagePropInterface } from "../root";
 
 
-
-interface LanguagePropInterface {
-	language: string,
-}
 
 export default function HeaderComponent(language: LanguagePropInterface) {
 	const lang = language.language;
