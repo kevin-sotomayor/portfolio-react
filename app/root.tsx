@@ -1,4 +1,4 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, isRouteErrorResponse, useNavigate, } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, isRouteErrorResponse, redirectDocument, } from "react-router";
 import React, { useEffect, } from "react";
 import type { Route } from "./+types/root";
 import { languageCookieUtils, } from "./utils/cookies";
@@ -14,23 +14,22 @@ export interface LanguagePropInterface {
 	language: string,
 }
 
-// export async function action({ request }: Route.ActionArgs) {
-// 	try {
-// 		const rawFormData = await request.formData();
-// 		const formData = await Object.fromEntries(rawFormData);
-// 		const headersCookie = await request.headers.get("Cookie");
-// 		const cookie = await languageCookieUtils.parse(headersCookie) || {};
-// 		cookie.language = formData.language;
-// 		return redirectDocument(formData.submittedFrom, {
-// 			headers: {
-// 				"Set-Cookie": await languageCookieUtils.serialize(cookie),
-// 			},
-// 		});
-// 	} catch (error) {
-// 		console.error(error);
-// 		return redirectDocument("/");
-// 	}
-// }
+export async function action({ request }: Route.ActionArgs) {
+	try {
+		const rawFormData = await request.formData();
+		const formData = await Object.fromEntries(rawFormData);
+		const headersCookie = await request.headers.get("Cookie");
+		const cookie = await languageCookieUtils.parse(headersCookie) || {};
+		cookie.language = formData.language;
+		return redirectDocument(formData.submittedFrom as string, {
+			headers: {
+				"Set-Cookie": await languageCookieUtils.serialize(cookie),
+			},
+		});
+	} catch (error) {
+		console.error(error);
+	}
+}
 
 
 export async function loader({ request }: Route.LoaderArgs) {

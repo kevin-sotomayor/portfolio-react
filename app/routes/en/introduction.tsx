@@ -1,6 +1,5 @@
 import type { Route } from "../+types/introduction";
-import introductionContent from "../../data/introduction_content.json";
-import "../styles/introduction.css";
+import "../../styles/introduction.css";
 
 
 
@@ -21,12 +20,12 @@ export default function HomePage({ loaderData }: Route.ComponentProps) {
 	return (
 		<main className="app-introduction">
 			<div className="app-introduction__text">
-				{loaderData && (
-					<>
-						<h2>{loaderData[0]}</h2>
-						<h3>{loaderData[1]}</h3>
-					</>
-				)}
+				<h1>
+					Born in 1994 and based in Lyon, France, I am a curious programmer, constantly on the lookout for new ideas to create a more aesthetic, enjoyable and high-performance Web experience.
+				</h1>
+				<h2>
+					I specialize in Front-End development with JavaScript, TypeScript, React and its framework React Router v7.
+				</h2>
 			</div>
 		</main>
 	)
